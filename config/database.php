@@ -54,7 +54,7 @@ return [
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
+            'prefix' => 'laravel_',
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
@@ -91,6 +91,17 @@ return [
             'prefix_indexes' => true,
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
+        ],
+
+        'filemaker' => [
+            'driver' => 'filemaker',
+            'host' => env('FM_HOST', 'fms.mycompany.com'),
+            'database' => env('FM_DATABASE', 'MyFileName'),
+            'username' => env('FM_USERNAME', 'myusername'),
+            'password' => env('FM_PASSWORD', ''),
+            'prefix' => env('FM_PREFIX', ''),
+            'version' => env('FM_VERSION', 'vLatest'),
+            'protocol' => env('FM_PROTOCOL', 'https'),
         ],
 
     ],

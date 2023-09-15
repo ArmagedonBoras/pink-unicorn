@@ -1,6 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +18,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return (Auth::check()) ? redirect(settings('landing_start', '/armagedon')) : redirect(settings('landing_login', '/armagedon'));
 });
+
+Route::get('/home', function () {
+    return (Auth::check()) ? redirect(settings('landing_login', '/armagedon')) : redirect(settings('landing_login', '/armagedon'));
+});
+
+Route::group(
+    ['middleware' => ['role:admin'], 'prefix' => 'admin'],
+    function () {
+        Route::get('settings', [SettingsController::class, 'edit'])->name('settings.edit');
+        Route::put('settings', [SettingsController::class, 'update'])->name('settings.update');
+        Route::resources([
+            'tags' => TagController::class,
+            'users' => UserController::class,
+            'roles' => RoleController::class,
+            'pages' => PageController::class,
+            'permissions' => PermissionController::class,
+            'menus' => MenuController::class,
+        ]);
+    }
+);
+
+Route::get('/{parent}/{link}', [PageController::class, 'showParent']);
+Route::get('/{link}', [PageController::class, 'show']);
