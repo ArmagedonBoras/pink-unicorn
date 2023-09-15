@@ -1,0 +1,54 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,300,700);
+
+:root {
+    --bs-primary: #dd8500 !important;
+    --bs-link-color: #dd8500 !important;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+.navbar-light .navbar-nav .nav-link.active,
+.dropdown-item.active,
+.dropdown-item:active {
+    color: #dd8500;
+    background-color: #fff;
+}
+
+.text-bilkoop {
+    color: #dd8500;
+}
+
+.bg-bilkoop {
+    background-color: #dd8500;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.hero-image {
+    background-image: url("");
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.hero-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#journal-table td,
+#journal-table th,
+#journal-table button,
+#journal-table input,
+#journal-table select {
+    font-size: 14px;
+}
