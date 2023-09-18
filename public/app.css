@@ -1,8 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,300,700);
 
 :root {
-    --bs-primary: #dd8500 !important;
-    --bs-link-color: #dd8500 !important;
+    --bs-primary: #E48131 !important;
+    --bs-link-color: #E48131 !important;
 }
 
 body {
@@ -12,16 +12,8 @@ body {
 .navbar-light .navbar-nav .nav-link.active,
 .dropdown-item.active,
 .dropdown-item:active {
-    color: #dd8500;
+    color: #E48131;
     background-color: #fff;
-}
-
-.text-bilkoop {
-    color: #dd8500;
-}
-
-.bg-bilkoop {
-    background-color: #dd8500;
 }
 
 .align-right {

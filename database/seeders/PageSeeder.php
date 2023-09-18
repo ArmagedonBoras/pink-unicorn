@@ -17,31 +17,20 @@ class PageSeeder extends Seeder
      */
     public function run()
     {
-        Menu::create(['name' => 'Info', 'link' => 'info', 'sort_order' => 10, 'gate' => 'user']);
+        // Menu::create(['name' => 'Info', 'link' => 'info', 'sort_order' => 10, 'gate' => 'user']);
         Menu::create(['name' => 'User', 'link' => 'user', 'sort_order' => 10, 'gate' => 'hidden']);
-        Menu::create(['name' => 'Bokning', 'link' => 'bookings', 'sort_order' => 30, 'gate' => 'user']);
+        // Menu::create(['name' => 'Bokning', 'link' => 'bookings', 'sort_order' => 30, 'gate' => 'user']);
         // Menu::create(['name' => 'Bli medlem', 'link' => 'bli-medlem', 'sort_order' => 40, 'gate' => 'guest', 'parent' =>"medlemskap" ]);
 
         $membershipPage = Page::create([
             'title' => 'Om Medlemskap',
             'body' => '<p><strong>Gå med</strong><br />',
             'active' => 1,
-            'title_image' => 'storage/bg-images/title-bg-2.jpg',
+            'title_image' => 'storage/bg-images/dice.jpg',
         ]);
-        if (App::environment() == 'production') {
-            $membershipMenu = Menu::create(['name' => 'Om Medlemskap', 'link' => 'medlemskap', 'sort_order' => 30, 'page_id' => $membershipPage->id, 'gate' => 'guest']);
-            $membershipMenu = Menu::create(['name' => 'Medlemskap', 'link' => 'medlemskap', 'sort_order' => 30, 'gate' => 'user']);
-        } else {
-            $membershipMenu = Menu::create(['name' => 'Medlemskap', 'link' => 'medlemskap', 'sort_order' => 30,]);
-            $membershipMenu = Menu::create(['name' => 'Om Medlemskap', 'link' => 'medlemskap', 'sort_order' => 30, 'parent' => 'medlemskap', 'page_id' => $membershipPage->id]);
-            $memberlistMenu = Menu::create(['name' => 'Bokningsläget', 'link' => 'bokningslaget', 'sort_order' => 40, 'parent' => 'medlemskap', 'gate' => 'guest']);
-        }
-        $memberlistMenu = Menu::create(['name' => 'Mitt medlemskap', 'link' => 'mitt', 'sort_order' => 40, 'parent' => 'medlemskap', 'gate' => 'user']);
-        $memberlistMenu = Menu::create(['name' => 'Prisräknare', 'link' => 'bokningspris', 'sort_order' => 50, 'parent' => 'medlemskap',]);
-        $memberlistMenu = Menu::create(['name' => 'Medlemslista', 'link' => 'medlemslista', 'sort_order' => 30, 'parent' => 'medlemskap', 'gate' => 'user']);
-        $memberlistMenu = Menu::create(['name' => 'Filarkiv', 'link' => 'filarkiv', 'sort_order' => 40, 'parent' => 'medlemskap', 'gate' => 'user']);
 
-        $aboutMenu = Menu::create(['name' => 'Om oss', 'link' => 'om', 'sort_order' => 50]);
+        $membershipMenu = Menu::create(['name' => 'Medlemskap', 'link' => 'medlemskap', 'sort_order' => 30, 'page_id' => $membershipPage->id, 'icon' => 'people']);
+        $aboutMenu = Menu::create(['name' => 'Om oss', 'link' => 'om', 'sort_order' => 50, 'icon' => 'info-circle']);
         $aboutPage = Page::create([
             'title' => 'Om oss',
             'body' => '<p>Karlstads bilkooperativ har funnits sedan 1999 och är ett av Sveriges första bilkooperativ. '.
@@ -50,16 +39,16 @@ class PageSeeder extends Seeder
                         '<p>Du är välkommen att höra av dig med frågor på adressen <a href="mailto:medlemskap@karlstadsbilkooperativ.org">medlemskap@karlstadsbilkooperativ.org</a>.</p>',
             'active' => 1,
             'title_size' => 400,
-            'title_image' => 'storage/bg-images/title-bg-2.jpg',
+            'title_image' => 'storage/bg-images/dice.jpg',
         ]);
         $aboutPage->menu()->save($aboutMenu);
 
-        $ideaMenu = Menu::create(['name' => 'Hem', 'link' => 'armagedon', 'sort_order' => 10]);
+        $ideaMenu = Menu::create(['name' => 'Hem', 'link' => 'armagedon', 'sort_order' => 10, 'icon' => 'house']);
         $ideaPage = Page::create([
-            'title' => 'Armagedon',
-            'title_color' => '#000000',
+            'title' => 'Välkommen!',
+            'title_color' => '#ffffff',
             'tagline' => 'Kul att du hittat hit!',
-            'tagline_color' => '#000000',
+            'tagline_color' => '#ffffff',
             'body' =>
                 '<p>Om du är nyfiken på oss är det en bra start att läsa igenom följande.</p>
 
@@ -93,12 +82,12 @@ class PageSeeder extends Seeder
                 <br><br>
                 Välkommen till Armagedon!',
             'active' => 1,
-            'title_image' => 'storage/bg-images/Hero_test-1-1000x500.jpg',
-            'title_size' => 100,
+            'title_image' => 'storage/bg-images/dice.jpg',
+            'title_size' => 300,
         ]);
         $ideaPage->menu()->save($ideaMenu);
 
-        $placeMenu = Menu::create(['name' => 'Lokalen', 'link' => 'lokalen', 'sort_order' => 20]);
+        $placeMenu = Menu::create(['name' => 'Lokalen', 'link' => 'lokalen', 'sort_order' => 20, 'icon' => 'building']);
         $placePage = Page::create([
             'title' => 'Lokalen',
             'body' =>
@@ -106,23 +95,24 @@ class PageSeeder extends Seeder
                     Armagedon<br>
                     Katrinehillsgatan 7b<br>
                     504 52 Borås<br><br>
-
+                    <iframe width="425" height="350" src="https://www.openstreetmap.org/export/embed.html?bbox=12.946534752845766%2C57.713281970757926%2C12.951791882514955%2C57.71504130704727&amp;layer=mapnik&amp;marker=57.714161649590345%2C12.949163317680359" style="border: 1px solid black"></iframe>
+                    <br/><small><a href="https://www.openstreetmap.org/?mlat=57.71416&amp;mlon=12.94916#map=19/57.71416/12.94916&amp;layers=N" target="_blank">Visa större karta</a></small>
+                    <br>
                     Vi arbetar på en bättre presentation av våra lokaler. För dig som tänkt besöka oss kan det vara värt att veta att vi tyvärr inte har handikappanpassad entré. Det är trapporna en våning upp som gäller.</div>',
             'active' => 1,
-            'title_image' => 'storage/bg-images/title-bg-2.jpg',
-            'title_size' => 200,
+            'title_image' => 'storage/bg-images/dice.jpg',
+            'title_size' => 400,
         ]);
 
         $placePage->menu()->save($placeMenu);
 
-        Menu::create(['name' => 'Admin', 'link' => 'admin', 'sort_order' => 200, 'gate' => 'admin']);
-        Menu::create(['name' => 'Rättigheter', 'link' => 'permissions', 'sort_order' => 10, 'parent' => 'admin']);
-        Menu::create(['name' => 'Roller', 'link' => 'roles', 'sort_order' => 20, 'parent' => 'admin']);
-        Menu::create(['name' => 'Taggar/listposter', 'link' => 'tags', 'sort_order' => 50, 'parent' => 'admin']);
-        Menu::create(['name' => 'Statiska sidor', 'link' => 'pages', 'sort_order' => 60, 'parent' => 'admin']);
-        Menu::create(['name' => 'Medlemmar', 'link' => 'members', 'sort_order' => 70, 'parent' => 'admin']);
-        Menu::create(['name' => 'Körjournal', 'link' => 'journals', 'sort_order' => 80, 'parent' => 'admin']);
-        Menu::create(['name' => 'Menyer', 'link' => 'menus', 'sort_order' => 90, 'parent' => 'admin']);
-        Menu::create(['name' => 'Inställningar', 'link' => 'settings', 'sort_order' => 100, 'parent' => 'admin']);
+        Menu::create(['name' => 'Admin', 'link' => 'admin', 'sort_order' => 200, 'gate' => 'admin', 'icon' => 'gear']);
+        Menu::create(['name' => 'Rättigheter', 'link' => 'permissions', 'sort_order' => 10, 'parent' => 'admin', 'icon' => 'shield']);
+        Menu::create(['name' => 'Roller', 'link' => 'roles', 'sort_order' => 20, 'parent' => 'admin', 'icon' => 'person-vcard']);
+        Menu::create(['name' => 'Taggar/listposter', 'link' => 'tags', 'sort_order' => 50, 'parent' => 'admin', 'icon' => 'list-columns']);
+        Menu::create(['name' => 'Statiska sidor', 'link' => 'pages', 'sort_order' => 60, 'parent' => 'admin', 'icon' => 'file-code']);
+        Menu::create(['name' => 'Medlemmar', 'link' => 'members', 'sort_order' => 70, 'parent' => 'admin', 'icon' => 'file-person']);
+        Menu::create(['name' => 'Menyer', 'link' => 'menus', 'sort_order' => 90, 'parent' => 'admin', 'icon' => 'menu-button']);
+        Menu::create(['name' => 'Inställningar', 'link' => 'settings', 'sort_order' => 100, 'parent' => 'admin', 'icon' => 'house-gear']);
     }
 }

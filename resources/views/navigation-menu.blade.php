@@ -16,30 +16,47 @@
                     $menu_cache_name = Auth::guest() ? 'menu-guest-page-' . request()->path() : 'menu-user-' . Auth::id() . '-' . request()->path();
                 @endphp
                 <!-- tagcache(['menu'], $menu_cache_name, 24 * 3600) cache($menu_cache_name, 24 * 3600) -->
-                    @foreach (menu() as $item)
-                        @if ($item->hasChildren())
-                            <li class="nav-item dropdown">
-                                <a id="{{ $item->link }}MenuDropdown" href="#"
-                                    class="{{ Str::startsWith(request()->path(), $item->link) ? 'active ' : '' }}nav-link fs-6 fw-bolder text-uppercase"
-                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {{ $item->name }}&nbsp;<x-icon>caret-down-fill</x-icon>
-                                </a>
+                @foreach (menu() as $item)
+                    @if ($item->hasChildren())
+                        <li class="nav-item dropdown">
+                            <a id="{{ $item->link }}MenuDropdown" href="#"
+                                class="{{ Str::startsWith(request()->path(), $item->link) ? 'active ' : '' }}nav-link fs-6 fw-bolder text-uppercase"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                @if (!empty($item->icon))
+                                    <x-icon>{{ $item->icon }}</x-icon>&nbsp;
+                                @endif
+                                {{ $item->name }}&nbsp;<x-icon>caret-down-fill</x-icon>
+                            </a>
 
-                                <ul class="dropdown-menu dropdown-menu-right animate slideIn"
-                                    aria-labelledby="{{ $item->link }}MenuDropdown">
-                                    @foreach ($item->getChildren() as $child)
+                            <ul class="dropdown-menu dropdown-menu-right animate slideIn"
+                                aria-labelledby="{{ $item->link }}MenuDropdown">
+                                @foreach ($item->getChildren() as $child)
+                                    @if ($child->divider)
+                                        <hr class="dropdown-divider">
+                                    @else
                                         <li><a href="/{{ $item->link }}/{{ $child->link }}"
-                                                class="{{ request()->path() == $item->link . '/' . $child->link ? 'active ' : '' }}dropdown-item fs-6 fw-bolder text-uppercase">{{ $child->name }}</a>
+                                                class="{{ request()->path() == $child->link . '/' . $child->link ? 'active ' : '' }}dropdown-item fs-6 fw-bolder text-uppercase">
+                                                @if (!empty($child->icon))
+                                                    <x-icon>{{ $child->icon }}</x-icon>&nbsp;
+                                                @endif
+                                                {{ $child->name }}
+                                            </a>
                                         </li>
-                                    @endforeach
-                                </ul>
-                            @else
-                            <li>
-                                <a href="{{ Str::startsWith($item->link, 'http') ? $item->link : '/'.$item->link }}"
-                                    class="{{ request()->path() == $item->link ? 'active ' : '' }}nav-link fs-6 fw-bolder text-uppercase">{{ $item->name }}</a>
-                        @endif
-                        </li>
-                    @endforeach
+                                    @endif
+                                @endforeach
+                            </ul>
+                        @else
+                        <li>
+                            <a href="{{ Str::startsWith($item->link, 'http') ? $item->link : '/' . $item->link }}"
+                                class="{{ request()->path() == $item->link ? 'active ' : '' }}nav-link fs-6 fw-bolder text-uppercase">
+                                @if (!empty($item->icon))
+                                    <x-icon>{{ $item->icon }}</x-icon>&nbsp;
+                                @endif
+                                {{ $item->name }}
+                            </a>
+                    @endif
+                    </li>
+                @endforeach
                 <!-- endcache -->
             </ul>
 
@@ -51,25 +68,35 @@
                         <a id="UserDropdown" href="#"
                             class="{{ Str::startsWith(request()->path(), 'users') ? 'active ' : '' }}nav-link fs-6 fw-bolder text-uppercase"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ Auth::user()->name }}&nbsp;<x-icon>caret-down-fill</x-icon>
+                            <x-icon>person</x-icon>&nbsp;{{ Auth::user()->name }}&nbsp;<x-icon>caret-down-fill</x-icon>
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="UserDropdown">
                             <li><a href="/users/mypage"
-                                    class="{{ request()->path() == '/users/mypage' ? 'active ' : '' }}dropdown-item fs-6 fw-bolder text-uppercase">Min
-                                    sida</a></li>
+                                    class="{{ request()->path() == 'users/mypage' ? 'active ' : '' }}dropdown-item fs-6 fw-bolder text-uppercase">
+                                    <x-icon>person-badge</x-icon>&nbsp;Min sida
+                                </a>
+                            </li>
                             @foreach (menu('users') as $child)
-                                <li><a href="/users/{{ $child->link }}"
-                                        class="{{ request()->path() == 'users/' . $child->link ? 'active ' : '' }}dropdown-item fs-6 fw-bolder text-uppercase">{{ $child->name }}</a>
-                                </li>
+                                @if ($child->divider)
+                                    <hr class="dropdown-divider">
+                                @else
+                                    @if (!empty($child->icon))
+                                        <x-icon>{{ $child->icon }}</x-icon>&nbsp;
+                                    @endif
+                                    <li><a href="/users/{{ $child->link }}"
+                                            class="{{ request()->path() == 'users/' . $child->link ? 'active ' : '' }}dropdown-item fs-6 fw-bolder text-uppercase">{{ $child->name }}</a>
+                                    </li>
+                                @endif
                             @endforeach
 
                             <!-- Log out -->
                             <hr class="dropdown-divider">
                             <li>
                                 <a class="dropdown-item fs-6 fw-bolder text-uppercase" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logga
-                                    ut</a>
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <x-icon>door-closed-fill</x-icon>&nbsp;Logga ut
+                                </a>
                             </li>
                             <form method="POST" id="logout-form" action="{{ route('logout') }}">
                                 @csrf
@@ -78,8 +105,8 @@
                     </li>
                 @else
                     <li>
-                        <a href="{{ App::environment() == 'production' ? 'https://medlem.karlstadsbilkooperativ.org' : route('login') }}"
-                            class="{{ request()->path() == '/login' ? 'active ' : '' }}nav-link fs-6 fw-bolder text-uppercase">Logga
+                        <a href="{{ route('login') }}"
+                            class="{{ request()->path() == 'login' ? 'active ' : '' }}nav-link fs-6 fw-bolder text-uppercase"><x-icon>door-open</x-icon>&nbsp;Logga
                             in</a>
                     </li>
                 @endauth
