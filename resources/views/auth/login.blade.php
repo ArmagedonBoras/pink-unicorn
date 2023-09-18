@@ -21,7 +21,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-10 col-md-6 col-lg-4">
-                <x-form-input name="email" label="E-postadress" />
+                <x-form-input name="email" label="Medlemsnummer eller E-postadress" />
                 <x-form-input name="password" type="password" label="Lösenord" />
                 <label>&nbsp;</label>
                 <div class="form-group d-flex justify-content-between ">

@@ -2,6 +2,7 @@
 
 use App\Helpers\Settings;
 use App\Models\Menu;
+use Illuminate\Support\Facades\Http;
 
 if (!function_exists("menu")) {
     function menu(string $menu = "")
@@ -59,5 +60,55 @@ if (!function_exists("delete_button")) {
     function delete_button($route, $text, $button_class = "btn btn-danger")
     {
         return '<form method="POST" action="'.$route.'">'.csrf_field().method_field('DELETE').'<button type="submit" class="'.$button_class.'">'.$text.'</button></form>';
+    }
+}
+
+if (!function_exists("swish_qr")) {
+    function swish_qr(Int $number, Int $amount, String $message, Bool $message_lock = true, Bool $amount_lock = true, Bool $number_lock = true, String $format = "svg", Int $size = 300): String
+    {
+        $data = [
+           "message" => [
+                "value" => $message,
+                "editable" => !$message_lock,
+           ],
+           "amount" => [
+                "value" => $amount,
+                "editable" => !$amount_lock,
+
+           ],
+           "payee" => [
+                "value" => $number,
+                "editable" => !$number_lock,
+           ]
+        ];
+
+        if ($size < 300) {
+            $size = 300;
+        }
+
+        switch (Str::upper($format)) {
+            case "SVG":
+                $data["format"] = "svg";
+                $data["transparent"] = true;
+                break;
+            case "PNG":
+                $data["format"] = "png";
+                $data["size"] = $size;
+                $data["transparent"] = true;
+                break;
+            case "JPG":
+            default:
+                $data["format"] = "jpg";
+                $data["size"] = $size;
+        }
+
+        return Http::post("https://mpc.getswish.net/qrg-swish/api/v1/prefilled", $data)->body();
+    }
+}
+
+if (!function_exists(("swish_img_src"))) {
+    function swish_img_src(Int $number, Int $amount, String $message, Bool $message_lock = true, Bool $amount_lock = true, Bool $number_lock = true, Int $size = 300): String
+    {
+        return 'data:image/png;base64,' . base64_encode(swish_qr($number, $amount, $message, $message_lock, $amount_lock, $number_lock, "png", $size));
     }
 }

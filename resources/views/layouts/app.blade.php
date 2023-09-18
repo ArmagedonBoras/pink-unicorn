@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Karlstads bilkooperativ') }}</title>
+    <title>{{ config('app.name', 'Armagedon') }}</title>
     <link rel="shortcut icon" type="image/jpg" href="{{ asset('images/icon.jpg') }}">
 
     <!-- Styles -->
@@ -15,7 +15,6 @@
     <link href="{{ asset('vendor/flatpickr/flatpickr.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/summernote/summernote-bs5.min.css') }}" rel="stylesheet">
     <link href="{{ asset('app.css') }}" rel="stylesheet">
-    @livewireStyles
 
     <!-- Scripts -->
     <script src="{{ asset('vendor/moment/moment-with-locales.min.js') }}"></script>
@@ -51,7 +50,7 @@
                     <h1 style="font-size:50px{{ !empty($title_color) ? ';color:' . $title_color : '' }}">
                         {{ $title ?? '' }}
                     </h1>
-                    <h3 {{ !empty($tagline_color) ? 'style="color:' . $tagline_color . '"' : '' }}>
+                    <h3 style="{{ !empty($tagline_color) ? 'color:' . $tagline_color .';' : '' }}">
                         {{ $tagline ?? '' }}
                     </h3>
                 </div>
@@ -67,9 +66,6 @@
     </div>
 
     @stack('modals')
-
-    @livewireScripts
-
     @stack('scripts')
 
     <footer class="container p-3 bg-dark text-white fixed-bottom">

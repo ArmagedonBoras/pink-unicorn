@@ -3,8 +3,12 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
+use App\Http\Livewire\Members\ShowPage;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,11 +29,20 @@ Route::get('/home', function () {
     return (Auth::check()) ? redirect(settings('landing_login', '/armagedon')) : redirect(settings('landing_login', '/armagedon'));
 });
 
+Route::get('/dashboard', function () {
+    return (Auth::check()) ? redirect(settings('landing_login', '/armagedon')) : redirect(settings('landing_login', '/armagedon'));
+});
+
+Route::get('/users/mypage', ShowPage::class)->name('mypage.show');
+
+Route::post('/roles/{role}/members', [RoleMembersController::class, 'store'])->name('rolemembers.store');
+Route::delete('/roles/{role}/members/{user}', [RoleMembersController::class, 'destroy'])->name('rolemembers.destroy');
 Route::group(
     ['middleware' => ['role:admin'], 'prefix' => 'admin'],
     function () {
         Route::get('settings', [SettingsController::class, 'edit'])->name('settings.edit');
         Route::put('settings', [SettingsController::class, 'update'])->name('settings.update');
+
         Route::resources([
             'tags' => TagController::class,
             'users' => UserController::class,

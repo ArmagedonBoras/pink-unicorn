@@ -6,10 +6,10 @@
         @endif
     </label>
     <select id="{{ $name }}" name="{{ $name }}" class="form-select{{ $errors->has($name) ? ' is-invalid' : '' }} {{ $inputClass }}" {{ $required ?? false ? 'required' : '' }} {{ $disabled ?? false ? 'disabled' : '' }} {{ $attributes }}>
-        @foreach ($options as $key => $tag)
+        @foreach ((array)$options as $key => $tag)
             @if (is_array($tag))
                 <optgroup label="{{ $key }}"></optgroup>
-                @foreach ($tag as $itemkey => $item)
+                @foreach ((array)$tag as $itemkey => $item)
                     <option value="{{ $itemkey }}" {{ old($name, $value) == $itemkey ? 'selected' : '' }}>{{ $item }}</option>
                 @endforeach
             @else
