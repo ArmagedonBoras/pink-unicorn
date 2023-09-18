@@ -64,7 +64,8 @@ if (!function_exists("delete_button")) {
 }
 
 if (!function_exists("swish_qr")) {
-    function swish_qr(Int $number, Int $amount, String $message, Bool $message_lock = true, Bool $amount_lock = true, Bool $number_lock = true, String $format = "svg", Int $size = 300): String
+    function swish_qr(String $number, Int $amount, String $message, Bool $message_lock = true, Bool $amount_lock = true, String $format = "svg", Int $size = 300): String
+    // Based on https://developer.swish.nu/api/qr-codes/v2
     {
         $data = [
            "message" => [
@@ -76,10 +77,7 @@ if (!function_exists("swish_qr")) {
                 "editable" => !$amount_lock,
 
            ],
-           "payee" => [
-                "value" => $number,
-                "editable" => !$number_lock,
-           ]
+           "payee" => $number,
         ];
 
         if ($size < 300) {
@@ -101,14 +99,13 @@ if (!function_exists("swish_qr")) {
                 $data["format"] = "jpg";
                 $data["size"] = $size;
         }
-
-        return Http::post("https://mpc.getswish.net/qrg-swish/api/v1/prefilled", $data)->body();
+        return Http::post("https://api.swish.nu/qr/v2/prefilled", $data)->body();
     }
 }
 
 if (!function_exists(("swish_img_src"))) {
-    function swish_img_src(Int $number, Int $amount, String $message, Bool $message_lock = true, Bool $amount_lock = true, Bool $number_lock = true, Int $size = 300): String
+    function swish_img_src(String $number, Int $amount, String $message, Bool $message_lock = true, Bool $amount_lock = true, Int $size = 300): String
     {
-        return 'data:image/png;base64,' . base64_encode(swish_qr($number, $amount, $message, $message_lock, $amount_lock, $number_lock, "png", $size));
+        return 'data:image/png;base64,' . base64_encode(swish_qr($number, $amount, $message, $message_lock, $amount_lock, "png", $size));
     }
 }
