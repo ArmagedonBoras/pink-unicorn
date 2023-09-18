@@ -87,7 +87,8 @@ class PageSeeder extends Seeder
         ]);
         $ideaPage->menu()->save($ideaMenu);
 
-        $placeMenu = Menu::create(['name' => 'Lokalen', 'link' => 'lokalen', 'sort_order' => 20, 'icon' => 'building']);
+        $placeMenu = Menu::create(['name' => 'Lokalen', 'link' => 'building', 'sort_order' => 20, 'icon' => 'building']);
+        $placeMenu = Menu::create(['name' => 'Hitta till oss!', 'link' => 'findyourway', 'parent' => 'building', 'sort_order' => 20, 'icon' => 'geo-alt']);
         $placePage = Page::create([
             'title' => 'Lokalen',
             'body' =>
@@ -103,7 +104,69 @@ class PageSeeder extends Seeder
             'title_image' => 'storage/bg-images/dice.jpg',
             'title_size' => 400,
         ]);
-
+        $placePage->menu()->save($placeMenu);
+        $placeMenu = Menu::create(['name' => 'Stora rummet', 'link' => 'large_hall', 'parent' => 'building', 'sort_order' => 30, 'icon' => 'dice-1']);
+        $placePage = Page::create([
+            'title' => 'Stora rummet',
+            'body' => '',
+            'active' => 1,
+            'title_image' => 'storage/bg-images/dice.jpg',
+            'title_size' => 400,
+        ]);
+        $placePage->menu()->save($placeMenu);
+        $placeMenu = Menu::create(['name' => 'Gröna rummet', 'link' => 'green_room', 'parent' => 'building', 'sort_order' => 30, 'icon' => 'dice-2']);
+        $placePage = Page::create([
+            'title' => 'Gröna rummet',
+            'body' => '',
+            'active' => 1,
+            'title_image' => 'storage/bg-images/dice.jpg',
+            'title_size' => 400,
+        ]);
+        $placePage->menu()->save($placeMenu);
+        $placeMenu = Menu::create(['name' => 'Blå rummet', 'link' => 'blue_room', 'parent' => 'building', 'sort_order' => 30, 'icon' => 'dice-3']);
+        $placePage = Page::create([
+            'title' => 'Blå rummet',
+            'body' => '',
+            'active' => 1,
+            'title_image' => 'storage/bg-images/dice.jpg',
+            'title_size' => 400,
+        ]);
+        $placePage->menu()->save($placeMenu);
+        $placeMenu = Menu::create(['name' => 'Röda rummet', 'link' => 'red_room', 'parent' => 'building', 'sort_order' => 30, 'icon' => 'dice-4']);
+        $placePage = Page::create([
+            'title' => 'Röda rummet',
+            'body' => '',
+            'active' => 1,
+            'title_image' => 'storage/bg-images/dice.jpg',
+            'title_size' => 400,
+        ]);
+        $placePage->menu()->save($placeMenu);
+        $placeMenu = Menu::create(['name' => 'Bruna rummet', 'link' => 'brown_room', 'parent' => 'building', 'sort_order' => 30, 'icon' => 'dice-5']);
+        $placePage = Page::create([
+            'title' => 'Bruna rummet',
+            'body' => '',
+            'active' => 1,
+            'title_image' => 'storage/bg-images/dice.jpg',
+            'title_size' => 400,
+        ]);
+        $placePage->menu()->save($placeMenu);
+        $placeMenu = Menu::create(['name' => 'Målarrummet', 'link' => 'large_hall', 'parent' => 'building', 'sort_order' => 30, 'icon' => 'palette']);
+        $placePage = Page::create([
+            'title' => 'Målarrummet',
+            'body' => '',
+            'active' => 1,
+            'title_image' => 'storage/bg-images/dice.jpg',
+            'title_size' => 400,
+        ]);
+        $placePage->menu()->save($placeMenu);
+        $placeMenu = Menu::create(['name' => 'Sprayrummet', 'link' => 'spray_room', 'parent' => 'building', 'sort_order' => 30, 'icon' => 'brush']);
+        $placePage = Page::create([
+            'title' => 'Sprayrummet',
+            'body' => '',
+            'active' => 1,
+            'title_image' => 'storage/bg-images/dice.jpg',
+            'title_size' => 400,
+        ]);
         $placePage->menu()->save($placeMenu);
 
         Menu::create(['name' => 'Admin', 'link' => 'admin', 'sort_order' => 200, 'gate' => 'admin', 'icon' => 'gear']);
