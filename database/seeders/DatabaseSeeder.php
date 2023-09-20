@@ -23,13 +23,13 @@ class DatabaseSeeder extends Seeder
             'memberNo' => 901,
             'name' => 'Örjan Almén',
             'email' => 'orjan.almen@gmail.com',
-            'password' => Hash::make('password'), // Str::random(10),
+            'password' => Str::random(10), // Hash::make('password')
         ]);
         User::create([
             'memberNo' => 944,
             'name' => 'Niklas Mårdby',
             'email' => 'niklas.mardby@gmail.com',
-            'password' => Hash::make(Str::random(10)),
+            'password' => Hash::make(Str::random(10)), // Hash::make('password')
         ]);
         $this->call([
             PageSeeder::class,
