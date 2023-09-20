@@ -19,7 +19,7 @@
     <!-- Scripts -->
     <script src="{{ asset('vendor/moment/moment-with-locales.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('vendor/alpine/alpine.js') }}" defer></script>
+    <!-- script src="{{ asset('vendor/alpine/alpine.js') }}" defer></script -->
     <script src="{{ asset('vendor/flatpickr/flatpickr.min.js') }}"></script>
     <script src="{{ asset('vendor/flatpickr/sv.js') }}"></script>
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
@@ -50,7 +50,7 @@
                     <h1 style="font-size:50px{{ !empty($title_color) ? ';color:' . $title_color : '' }}">
                         {{ $title ?? '' }}
                     </h1>
-                    <h3 style="{{ !empty($tagline_color) ? 'color:' . $tagline_color .';' : '' }}">
+                    <h3 style="{{ !empty($tagline_color) ? 'color:' . $tagline_color . ';' : '' }}">
                         {{ $tagline ?? '' }}
                     </h3>
                 </div>
