@@ -10,7 +10,7 @@
         </button>
 
         <div class="collapse navbar-collapse justify-content-end" id="navbar">
-            <!-- Left Side Of Navbar -->
+            <!-- Normal menus -->
             <ul class="navbar-nav mb-2 mb-lg-0">
                 @php
                     $menu_cache_name = Auth::guest() ? 'menu-guest-page-' . request()->path() : 'menu-user-' . Auth::id() . '-' . request()->path();
@@ -60,9 +60,8 @@
                 <!-- endcache -->
             </ul>
 
-            <!-- Right Side Of Navbar -->
+            <!-- User menu -->
             <ul class="navbar-nav">
-                <!-- Settings Dropdown -->
                 @auth
                     <li class="nav-item dropdown">
                         <a id="UserDropdown" href="#"
