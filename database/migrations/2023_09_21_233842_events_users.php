@@ -10,13 +10,11 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('lockers', function (Blueprint $table) {
+        Schema::create('events_users', function (Blueprint $table) {
             $table->id();
-            $table->integer("number")->unique();
-            $table->integer('size')->default(0);
-            $table->foreignId('user_id')->nullable();
-            $table->foreignId('created_by')->nullable();
-            $table->foreignId('updated_by')->nullable();
+            $table->foreignId("event_id");
+            $table->foreignId('user_id');
+            $table->foreignId('role');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('lockers');
+        //
     }
 };
