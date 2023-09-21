@@ -10,11 +10,12 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('lockers', function (Blueprint $table) {
+        Schema::create('rooms', function (Blueprint $table) {
             $table->id();
-            $table->integer("number")->unique();
-            $table->integer('size')->default(0);
-            $table->foreignId('user_id')->nullable();
+            $table->foreignId("owner");
+            $table->string('name');
+            $table->text('description')->default('');
+            $table->boolean("bookable")->default(false);
             $table->foreignId('created_by')->nullable();
             $table->foreignId('updated_by')->nullable();
             $table->timestamps();
@@ -26,6 +27,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('lockers');
+        Schema::dropIfExists('rooms');
     }
 };
