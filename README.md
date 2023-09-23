@@ -31,7 +31,7 @@ How to set up locally:
     * FM_PREFIX=
     * FM_VERSION=vLatest
     * FM_PROTOCOL=https
-  * If you have a web server software that you available, change the the hostname you have configured in .env:
+  * If you have a web server software available, set the the hostname you have configured in .env:
     * APP_URL=
 * Create tables and seed default data by `php artisan reseed` (custom artisan command)
 * If you don't have a local web server, you can start the php internal server `php artisan serve` 
@@ -46,3 +46,16 @@ Laravel is set up with this boilerplate:
   * Jetstream with Livewire
   * Bootstrap 5 with Bootstrap Icons
   * Summernote Rich Text Editor
+
+  These models are created:
+ | Model | Status | Usage |
+ | ----------- | ----------- | ----------- | 
+ | User | Functional | Maintains login, permissions and roles |
+ | Event | | For Event handling - Booking of rooms and sign up for events  |
+ | Room | | Rooms to be booked for events |  |
+ | Page | Functional | Static pages |
+ | Menu | Functional | Menu items |
+ | Tag | Functional | Categorized Tagging |
+ | Key | | Key management |
+ | Locker | | Locker management |
+ | Fortnox | Functional | Bookeeping related stuff |
