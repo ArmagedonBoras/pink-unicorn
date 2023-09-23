@@ -24,12 +24,10 @@ class Event extends Model
     public function rooms(): BelongsToMany
     {
         return $this->belongsToMany(Room::class)->withTimestamps();
-        ;
     }
 
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)->withTimestamps();
-        ;
     }
 }
