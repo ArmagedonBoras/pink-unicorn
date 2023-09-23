@@ -14,6 +14,9 @@ return new class () extends Migration {
             $table->id();
             $table->foreignId("owner");
             $table->string('name');
+            $table->string('short');
+            $table->string('color');
+            $table->string('text_color');
             $table->text('description')->default('');
             $table->boolean("bookable")->default(false);
             $table->foreignId('created_by')->nullable();
