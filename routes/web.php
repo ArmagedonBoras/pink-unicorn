@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Calendar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
@@ -34,7 +35,7 @@ Route::get('/dashboard', function () {
 });
 
 Route::get('/users/mypage', ShowPage::class)->name('mypage.show');
-
+Route::view('/calendar', 'events.calendar')->name('calendar');
 Route::post('/roles/{role}/members', [RoleMembersController::class, 'store'])->name('rolemembers.store');
 Route::delete('/roles/{role}/members/{user}', [RoleMembersController::class, 'destroy'])->name('rolemembers.destroy');
 Route::group(
