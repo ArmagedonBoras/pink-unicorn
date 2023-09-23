@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PageSeeder::class,
             RoomSeeder::class,
+            EventSeeder::class,
 
         ]);
         app()->make(PermissionRegistrar::class)->forgetCachedPermissions();

@@ -2,13 +2,21 @@
 
 namespace App\Livewire;
 
+use Carbon\Carbon;
 use App\Models\Room;
+use App\Models\Event;
+use Carbon\CarbonImmutable;
 use Livewire\Component;
 
 class Calendar extends Component
 {
     public $rooms;
+    public $events;
     public $filter = [];
+    public $starts_at;
+    public $ends_at;
+    public $week;
+    public $days;
 
     public function mount()
     {
@@ -16,9 +24,50 @@ class Calendar extends Component
         foreach($this->rooms as $room) {
             $this->filter[$room->id] = true;
         }
+
+        $this->events = Event::all();
+        $this->starts_at = CarbonImmutable::now()->startOfWeek();
+        $this->ends_at = Carbon::now()->endOfWeek();
+        $this->week = Carbon::now()->isoWeek();
+        $this->updateFilter();
     }
 
-    public function filter() {}
+    public function addWeek()
+    {
+        $this->starts_at->addWeek();
+        $this->ends_at->addWeek();
+        $this->week++;
+        $this->updateFilter();
+    }
+
+    public function subWeek()
+    {
+        $this->starts_at->subWeek();
+        $this->ends_at->subWeek();
+        $this->week--;
+        $this->updateFilter();
+    }
+
+    public function updateFilter()
+    {
+        $inFilter = [];
+        $this->days = [1 => [], 2 => [], 3 => [], 4 => [], 5 => [], 6 => [], 7 => [],];
+        foreach ($this->filter as $key => $value) {
+            if ($value) {
+                $inFilter[] = $key;
+            }
+        }
+        $this->events = Event::where('starts_at', '<', $this->ends_at)
+            ->where('ends_at', '>', $this->starts_at)
+            ->whereHas('rooms', function ($q) use ($inFilter) {
+                $q->whereIn('room_id', $inFilter);
+            })
+            ->orderBy('starts_at')
+            ->get();
+        foreach ($this->events as $event) {
+            $this->days[$event->starts_at->dayOfWeekIso][] = $event;
+        }
+    }
 
     public function render()
     {

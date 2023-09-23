@@ -17,7 +17,7 @@ class RoomSeeder extends Seeder
                 'owner' => 1,
                 'name' => 'Stora rummet',
                 'short' => 'Stora',
-                'color' => "#ffffff",
+                'color' => "#aaaaaa",
                 'text_color' => '#000000',
                 'bookable' => true,
             ]);
