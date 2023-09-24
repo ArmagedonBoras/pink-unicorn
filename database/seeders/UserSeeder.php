@@ -20,13 +20,15 @@ class UserSeeder extends Seeder
     {
         app()->make(PermissionRegistrar::class)->forgetCachedPermissions();
         User::create([
-            'memberNo' => 901,
+            'member_no' => 901,
+            'membrum_id' => 5482,
             'name' => 'Örjan Almén',
             'email' => 'orjan.almen@gmail.com',
             'password' => Hash::make(Str::random(10)),
         ]);
         User::create([
-            'memberNo' => 944,
+            'member_no' => 944,
+            'membrum_id' => 5525,
             'name' => 'Niklas Mårdby',
             'email' => 'niklas.mardby@gmail.com',
             'password' => Hash::make(Str::random(10)), // Hash::make('password')

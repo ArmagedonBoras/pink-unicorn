@@ -31,7 +31,7 @@
 <body class="font-sans antialiased bg-light">
     <div class="container bg-white min-vh-100">
         <div class="row p-0 sticky-top">
-            @include('layouts.menu')
+            @include('menu.menu')
             <span class="d-flex justify-content-center bg-white">@include('cookie-consent::index')</span>
             @env(['staging', 'local'])
             <span class="d-flex justify-content-center bg-danger text-white p-2">

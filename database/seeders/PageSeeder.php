@@ -18,7 +18,7 @@ class PageSeeder extends Seeder
     public function run()
     {
         // Menu::create(['name' => 'Info', 'link' => 'info', 'sort_order' => 10, 'gate' => 'user']);
-        Menu::create(['name' => 'User', 'link' => 'user', 'sort_order' => 10, 'gate' => 'hidden']);
+        Menu::create(['name' => 'User', 'link' => 'anvandare', 'sort_order' => 10, 'gate' => 'hidden']);
         // Menu::create(['name' => 'Bokning', 'link' => 'bookings', 'sort_order' => 30, 'gate' => 'user']);
         // Menu::create(['name' => 'Bli medlem', 'link' => 'bli-medlem', 'sort_order' => 40, 'gate' => 'guest', 'parent' =>"medlemskap" ]);
 
@@ -33,9 +33,9 @@ class PageSeeder extends Seeder
         $aboutMenu = Menu::create(['name' => 'Om oss', 'link' => 'om', 'sort_order' => 50, 'icon' => 'info-circle']);
         $aboutPage = Page::create([
             'title' => 'Om oss',
-            'body' => '<p>Karlstads bilkooperativ har funnits sedan 1999 och är ett av Sveriges första bilkooperativ. '.
-                        'Vi är en ekonomisk förening som drivs utan vinstintresse och leds av en styrelse. Det praktiska arbetet med bilarna leds av en bilvårdsansvarig. '.
-                        'Årsmöte hålls i slutet av mars och där ser vi gärna så många medlemmar som möjligt.</p><br>'.
+            'body' => '<p>Karlstads bilkooperativ har funnits sedan 1999 och är ett av Sveriges första bilkooperativ. ' .
+                        'Vi är en ekonomisk förening som drivs utan vinstintresse och leds av en styrelse. Det praktiska arbetet med bilarna leds av en bilvårdsansvarig. ' .
+                        'Årsmöte hålls i slutet av mars och där ser vi gärna så många medlemmar som möjligt.</p><br>' .
                         '<p>Du är välkommen att höra av dig med frågor på adressen <a href="mailto:medlemskap@karlstadsbilkooperativ.org">medlemskap@karlstadsbilkooperativ.org</a>.</p>',
             'active' => 1,
             'title_size' => 400,
@@ -43,7 +43,7 @@ class PageSeeder extends Seeder
         ]);
         $aboutPage->menu()->save($aboutMenu);
 
-        $ideaMenu = Menu::create(['name' => 'Hem', 'link' => 'armagedon', 'sort_order' => 10, 'icon' => 'house']);
+        $ideaMenu = Menu::create(['name' => 'Hem', 'link' => 'hem', 'sort_order' => 10, 'icon' => 'house']);
         $ideaPage = Page::create([
             'title' => 'Välkommen!',
             'title_color' => '#ffffff',
@@ -87,8 +87,8 @@ class PageSeeder extends Seeder
         ]);
         $ideaPage->menu()->save($ideaMenu);
 
-        $placeMenu = Menu::create(['name' => 'Lokalen', 'link' => 'building', 'sort_order' => 20, 'icon' => 'building']);
-        $placeMenu = Menu::create(['name' => 'Hitta till oss!', 'link' => 'findyourway', 'parent' => 'building', 'sort_order' => 20, 'icon' => 'geo-alt']);
+        $placeMenu = Menu::create(['name' => 'Lokalen', 'link' => 'lokalen', 'sort_order' => 20, 'icon' => 'building']);
+        $placeMenu = Menu::create(['name' => 'Hitta till oss!', 'link' => 'hitta', 'parent' => 'lokalen', 'sort_order' => 20, 'icon' => 'geo-alt']);
         $placePage = Page::create([
             'title' => 'Lokalen',
             'body' =>
@@ -105,7 +105,7 @@ class PageSeeder extends Seeder
             'title_size' => 400,
         ]);
         $placePage->menu()->save($placeMenu);
-        $placeMenu = Menu::create(['name' => 'Stora rummet', 'link' => 'large_hall', 'parent' => 'building', 'sort_order' => 30, 'icon' => 'dice-1']);
+        $placeMenu = Menu::create(['name' => 'Stora rummet', 'link' => 'stora', 'parent' => 'lokalen', 'sort_order' => 30, 'icon' => 'dice-1']);
         $placePage = Page::create([
             'title' => 'Stora rummet',
             'body' => '',
@@ -114,7 +114,7 @@ class PageSeeder extends Seeder
             'title_size' => 400,
         ]);
         $placePage->menu()->save($placeMenu);
-        $placeMenu = Menu::create(['name' => 'Gröna rummet', 'link' => 'green_room', 'parent' => 'building', 'sort_order' => 30, 'icon' => 'dice-2']);
+        $placeMenu = Menu::create(['name' => 'Gröna rummet', 'link' => 'grona', 'parent' => 'lokalen', 'sort_order' => 30, 'icon' => 'dice-2']);
         $placePage = Page::create([
             'title' => 'Gröna rummet',
             'body' => '',
@@ -123,7 +123,7 @@ class PageSeeder extends Seeder
             'title_size' => 400,
         ]);
         $placePage->menu()->save($placeMenu);
-        $placeMenu = Menu::create(['name' => 'Blå rummet', 'link' => 'blue_room', 'parent' => 'building', 'sort_order' => 30, 'icon' => 'dice-3']);
+        $placeMenu = Menu::create(['name' => 'Blå rummet', 'link' => 'bla', 'parent' => 'lokalen', 'sort_order' => 30, 'icon' => 'dice-3']);
         $placePage = Page::create([
             'title' => 'Blå rummet',
             'body' => '',
@@ -132,7 +132,7 @@ class PageSeeder extends Seeder
             'title_size' => 400,
         ]);
         $placePage->menu()->save($placeMenu);
-        $placeMenu = Menu::create(['name' => 'Röda rummet', 'link' => 'red_room', 'parent' => 'building', 'sort_order' => 30, 'icon' => 'dice-4']);
+        $placeMenu = Menu::create(['name' => 'Röda rummet', 'link' => 'roda', 'parent' => 'lokalen', 'sort_order' => 30, 'icon' => 'dice-4']);
         $placePage = Page::create([
             'title' => 'Röda rummet',
             'body' => '',
@@ -141,7 +141,7 @@ class PageSeeder extends Seeder
             'title_size' => 400,
         ]);
         $placePage->menu()->save($placeMenu);
-        $placeMenu = Menu::create(['name' => 'Bruna rummet', 'link' => 'brown_room', 'parent' => 'building', 'sort_order' => 30, 'icon' => 'dice-5']);
+        $placeMenu = Menu::create(['name' => 'Bruna rummet', 'link' => 'bruna', 'parent' => 'lokalen', 'sort_order' => 30, 'icon' => 'dice-5']);
         $placePage = Page::create([
             'title' => 'Bruna rummet',
             'body' => '',
@@ -150,7 +150,7 @@ class PageSeeder extends Seeder
             'title_size' => 400,
         ]);
         $placePage->menu()->save($placeMenu);
-        $placeMenu = Menu::create(['name' => 'Målarrummet', 'link' => 'large_hall', 'parent' => 'building', 'sort_order' => 30, 'icon' => 'palette']);
+        $placeMenu = Menu::create(['name' => 'Målarrummet', 'link' => 'malarrummet', 'parent' => 'lokalen', 'sort_order' => 30, 'icon' => 'palette']);
         $placePage = Page::create([
             'title' => 'Målarrummet',
             'body' => '',
@@ -159,7 +159,7 @@ class PageSeeder extends Seeder
             'title_size' => 400,
         ]);
         $placePage->menu()->save($placeMenu);
-        $placeMenu = Menu::create(['name' => 'Sprayrummet', 'link' => 'spray_room', 'parent' => 'building', 'sort_order' => 30, 'icon' => 'brush']);
+        $placeMenu = Menu::create(['name' => 'Sprayrummet', 'link' => 'sprayrummet', 'parent' => 'lokalen', 'sort_order' => 30, 'icon' => 'brush']);
         $placePage = Page::create([
             'title' => 'Sprayrummet',
             'body' => '',
@@ -174,7 +174,7 @@ class PageSeeder extends Seeder
         Menu::create(['name' => 'Roller', 'link' => 'roles', 'sort_order' => 20, 'parent' => 'admin', 'icon' => 'person-vcard']);
         Menu::create(['name' => 'Taggar/listposter', 'link' => 'tags', 'sort_order' => 50, 'parent' => 'admin', 'icon' => 'list-columns']);
         Menu::create(['name' => 'Statiska sidor', 'link' => 'pages', 'sort_order' => 60, 'parent' => 'admin', 'icon' => 'file-code']);
-        Menu::create(['name' => 'Medlemmar', 'link' => 'members', 'sort_order' => 70, 'parent' => 'admin', 'icon' => 'file-person']);
+        Menu::create(['name' => 'Medlemmar', 'link' => 'users', 'sort_order' => 70, 'parent' => 'admin', 'icon' => 'file-person']);
         Menu::create(['name' => 'Menyer', 'link' => 'menus', 'sort_order' => 90, 'parent' => 'admin', 'icon' => 'menu-button']);
         Menu::create(['name' => 'Inställningar', 'link' => 'settings', 'sort_order' => 100, 'parent' => 'admin', 'icon' => 'house-gear']);
     }

@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index', ['users' => User::with('member')->where('id', '>', 1)->get()]);
+        return view('users.index', ['users' => User::with('profile')->get()]);
     }
 
     /**

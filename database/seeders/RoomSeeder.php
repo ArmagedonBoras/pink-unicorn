@@ -20,7 +20,8 @@ class RoomSeeder extends Seeder
                 'color' => "#aaaaaa",
                 'text_color' => '#000000',
                 'bookable' => true,
-            ]);
+                'icon' => 'dice-1',
+        ]);
         Room::create([
                 'owner' => 1,
                 'name' => 'Gröna rummet',
@@ -28,7 +29,8 @@ class RoomSeeder extends Seeder
                 'color' => "#00ff00",
                 'text_color' => '#000000',
                 'bookable' => true,
-            ]);
+                'icon' => 'dice-2',
+        ]);
         Room::create([
                 'owner' => 1,
                 'name' => 'Blå rummet',
@@ -36,7 +38,8 @@ class RoomSeeder extends Seeder
                 'color' => "#0000ff",
                 'text_color' => '#ffffff',
                 'bookable' => true,
-            ]);
+                'icon' => 'dice-3',
+        ]);
         Room::create([
                 'owner' => 1,
                 'name' => 'Röda rummet',
@@ -44,7 +47,8 @@ class RoomSeeder extends Seeder
                 'color' => "#ff0000",
                 'text_color' => '#000000',
                 'bookable' => true,
-            ]);
+                'icon' => 'dice-4',
+        ]);
         Room::create([
                 'owner' => 1,
                 'name' => 'Bruna rummet',
@@ -52,7 +56,8 @@ class RoomSeeder extends Seeder
                 'color' => "#a52a2a",
                 'text_color' => '#ffffff',
                 'bookable' => true,
-            ]);
+                'icon' => 'dice-5',
+        ]);
         Room::create([
                 'owner' => 1,
                 'name' => 'Målarhörnan',
@@ -60,7 +65,7 @@ class RoomSeeder extends Seeder
                 'color' => "#ffffff",
                 'text_color' => '#000000',
                 'bookable' => false,
-            ]);
+        ]);
         Room::create([
                 'owner' => 1,
                 'name' => 'Sprayrummet',
@@ -68,6 +73,6 @@ class RoomSeeder extends Seeder
                 'color' => "#ffffff",
                 'text_color' => '#000000',
                 'bookable' => false,
-            ]);
+        ]);
     }
 }

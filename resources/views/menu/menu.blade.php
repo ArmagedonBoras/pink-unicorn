@@ -65,14 +65,14 @@
                 @auth
                     <li class="nav-item dropdown">
                         <a id="UserDropdown" href="#"
-                            class="{{ Str::startsWith(request()->path(), 'users') ? 'active ' : '' }}nav-link fs-6 fw-bolder text-uppercase"
+                            class="{{ Str::startsWith(request()->path(), 'anvandare') ? 'active ' : '' }}nav-link fs-6 fw-bolder text-uppercase"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <x-icon>person</x-icon>&nbsp;{{ Auth::user()->name }}&nbsp;<x-icon>caret-down-fill</x-icon>
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="UserDropdown">
-                            <li><a href="/users/mypage"
-                                    class="{{ request()->path() == 'users/mypage' ? 'active ' : '' }}dropdown-item fs-6 fw-bolder text-uppercase">
+                            <li><a href="/anvandare/minsida"
+                                    class="{{ request()->path() == 'anvandare/minsida' ? 'active ' : '' }}dropdown-item fs-6 fw-bolder text-uppercase">
                                     <x-icon>person-badge</x-icon>&nbsp;Min sida
                                 </a>
                             </li>
@@ -83,8 +83,8 @@
                                     @if (!empty($child->icon))
                                         <x-icon>{{ $child->icon }}</x-icon>&nbsp;
                                     @endif
-                                    <li><a href="/users/{{ $child->link }}"
-                                            class="{{ request()->path() == 'users/' . $child->link ? 'active ' : '' }}dropdown-item fs-6 fw-bolder text-uppercase">{{ $child->name }}</a>
+                                    <li><a href="/anvandare/{{ $child->link }}"
+                                            class="{{ request()->path() == 'anvandare/' . $child->link ? 'active ' : '' }}dropdown-item fs-6 fw-bolder text-uppercase">{{ $child->name }}</a>
                                     </li>
                                 @endif
                             @endforeach
