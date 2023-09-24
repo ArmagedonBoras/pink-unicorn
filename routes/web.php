@@ -8,8 +8,10 @@ use App\Http\Livewire\Members\ShowPage;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleMembersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,21 +25,21 @@ use App\Http\Controllers\PermissionController;
 */
 
 Route::get('/', function () {
-    return (Auth::check()) ? redirect(settings('landing_start', '/armagedon')) : redirect(settings('landing_login', '/armagedon'));
+    return (Auth::check()) ? redirect(settings('landing_start', '/hem')) : redirect(settings('landing_login', '/hem'));
 });
 
 Route::get('/home', function () {
-    return (Auth::check()) ? redirect(settings('landing_login', '/armagedon')) : redirect(settings('landing_login', '/armagedon'));
+    return (Auth::check()) ? redirect(settings('landing_login', '/hem')) : redirect(settings('landing_login', '/hem'));
 });
 
 Route::get('/dashboard', function () {
-    return (Auth::check()) ? redirect(settings('landing_login', '/armagedon')) : redirect(settings('landing_login', '/armagedon'));
+    return (Auth::check()) ? redirect(settings('landing_login', '/hem')) : redirect(settings('landing_login', '/hem'));
 });
 
-Route::get('/users/mypage', ShowPage::class)->name('mypage.show');
-Route::view('/calendar', 'events.calendar')->name('calendar');
-Route::post('/roles/{role}/members', [RoleMembersController::class, 'store'])->name('rolemembers.store');
-Route::delete('/roles/{role}/members/{user}', [RoleMembersController::class, 'destroy'])->name('rolemembers.destroy');
+Route::get('/anvandare/minsida', ShowPage::class)->name('mypage.show');
+Route::view('/kalender', 'events.calendar')->name('calendar');
+Route::post('/roller/{role}/medlemmar', [RoleMembersController::class, 'store'])->name('rolemembers.store');
+Route::delete('/roller/{role}/medlemmar/{user}', [RoleMembersController::class, 'destroy'])->name('rolemembers.destroy');
 Route::group(
     ['middleware' => ['role:admin'], 'prefix' => 'admin'],
     function () {

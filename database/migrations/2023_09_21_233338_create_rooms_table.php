@@ -15,6 +15,7 @@ return new class () extends Migration {
             $table->foreignId("owner");
             $table->string('name');
             $table->string('short');
+            $table->string('icon')->default('');
             $table->string('color');
             $table->string('text_color');
             $table->text('description')->default('');

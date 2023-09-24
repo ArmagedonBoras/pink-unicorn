@@ -1,3 +1,3 @@
 <div>
-    {{ $user->memberNo }} {{ $user->name }}
+    {{ $user->member_no }} {{ $user->name }}
 </div>
