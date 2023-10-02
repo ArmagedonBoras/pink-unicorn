@@ -17,5 +17,5 @@
     <x-slot name="tagline_color">
         {{ $tagline_color ?? '' }}
     </x-slot>
-    <livewire:calendar>
+    <livewire:calendar room="2">
 </x-app-layout>

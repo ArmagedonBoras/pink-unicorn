@@ -33,6 +33,14 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'member_no',
+        'profile_id',
+    ];
+
+    public static $fm_fields = [
+        'name',
+        'email',
+        'member_no',
     ];
 
     /**

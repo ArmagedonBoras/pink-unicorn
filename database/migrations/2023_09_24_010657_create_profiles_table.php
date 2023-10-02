@@ -12,23 +12,21 @@ return new class () extends Migration {
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->string('name');
+            $table->string('email');
+            $table->integer('member_no')->nullable();
             $table->string('address')->nullable();
-            $table->integer('zip')->nullable();
+            $table->string('zip')->nullable();
             $table->string('city')->nullable();
-            $table->unsignedBigInteger('person_id')->nullable();
-            $table->string('telephone')->nullable();
-            $table->boolean('notifications')->default(true);
-            $table->boolean('supporting')->default(false);
-            $table->boolean('vapid')->default(false);
-            $table->boolean('woman')->default(false);
-            $table->boolean('bsk')->default(false);
-            $table->boolean('board')->default(false);
-            $table->boolean('study_circle')->default(false);
-            $table->boolean('study_leader')->default(true);
-
-            $table->date('study_leader_at')->nullable();
-
+            $table->string('person_id')->nullable();
+            $table->string('phone')->nullable();
+            $table->integer('paid_year')->default(0);
+            $table->integer('yearly_fee')->default(0);
+            $table->string('supporting');
+            $table->string('female')->default(false);
+            $table->string('bsk')->default(false);
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

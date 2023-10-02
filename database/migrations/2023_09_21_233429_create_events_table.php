@@ -17,6 +17,14 @@ return new class () extends Migration {
             $table->dateTime('ends_at');
             $table->foreignId('created_by')->nullable();
             $table->foreignId('updated_by')->nullable();
+            $table->string('title')->nullable();
+            $table->text('body')->nullable();
+            $table->foreignId('visibility')->nullable();
+            $table->foreignId('scope')->nullable();
+            $table->foreignId('availability')->nullable();
+            $table->foreignId('activity')->nullable();
+            $table->foreignId('activity_type')->nullable();
+            $table->boolean('signup')->default(false);
             $table->timestamps();
         });
     }
