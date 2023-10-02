@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\Tv\Tv;
+use App\Livewire\Tablet\Tablet;
 use App\Livewire\Calendar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -9,6 +11,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleMembersController;
@@ -24,22 +27,24 @@ use App\Http\Controllers\RoleMembersController;
 |
 */
 
+// Just to redirect that default paths from jetstream if forgotten some of the settings
 Route::get('/', function () {
     return (Auth::check()) ? redirect(settings('landing_start', '/hem')) : redirect(settings('landing_login', '/hem'));
 });
-
 Route::get('/home', function () {
     return (Auth::check()) ? redirect(settings('landing_login', '/hem')) : redirect(settings('landing_login', '/hem'));
 });
-
 Route::get('/dashboard', function () {
     return (Auth::check()) ? redirect(settings('landing_login', '/hem')) : redirect(settings('landing_login', '/hem'));
 });
 
+Route::get('/tablet', Tablet::class);
+Route::get('/tv', Tv::class);
 Route::get('/anvandare/minsida', ShowPage::class)->name('mypage.show');
 Route::view('/kalender', 'events.calendar')->name('calendar');
 Route::post('/roller/{role}/medlemmar', [RoleMembersController::class, 'store'])->name('rolemembers.store');
 Route::delete('/roller/{role}/medlemmar/{user}', [RoleMembersController::class, 'destroy'])->name('rolemembers.destroy');
+Route::resource('evenemang', EventController::class)->names('events');
 Route::group(
     ['middleware' => ['role:admin'], 'prefix' => 'admin'],
     function () {
@@ -57,5 +62,6 @@ Route::group(
     }
 );
 
+// For static pages in two levels
 Route::get('/{parent}/{link}', [PageController::class, 'showParent']);
 Route::get('/{link}', [PageController::class, 'show']);

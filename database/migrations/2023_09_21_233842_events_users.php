@@ -14,7 +14,8 @@ return new class () extends Migration {
             $table->id();
             $table->foreignId("event_id");
             $table->foreignId('user_id');
-            $table->foreignId('role');
+            $table->foreignId('role')->nullable();
+            $table->boolean('checked_in')->default(false);
             $table->timestamps();
         });
     }

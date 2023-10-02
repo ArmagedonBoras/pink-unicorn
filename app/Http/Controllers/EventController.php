@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class EventController extends Controller
 {
@@ -20,7 +22,20 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        $event = new Event();
+        $event->starts_at = Carbon::now();
+        $event->ends_at = Carbon::now()->addHours(6);
+        $min = Carbon::tomorrow('Europe/Stockholm');
+        $max = Carbon::tomorrow('Europe/Stockholm')->addMonth();
+        if (Gate::allows('book-longer-than-month')) {
+            $max->addMonth();
+        }
+        if (Gate::allows('book-longer-than-two-months')) {
+            $max->addMonths(8);
+        }
+        $default = Carbon::tomorrow('Europe/Stockholm');
+        return view('events.create')
+            ->with(['event' => $event, 'min' => $min, 'max' => $max, 'default' => $default]);
     }
 
     /**
@@ -44,7 +59,8 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        return view('events.create')
+            ->with(['event' => $event]);
     }
 
     /**

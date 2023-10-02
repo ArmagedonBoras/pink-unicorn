@@ -15,18 +15,24 @@ class Calendar extends Component
     public $filter = [];
     public $starts_at;
     public $ends_at;
+    public $starts_at_immutable;
     public $week;
     public $days;
 
-    public function mount()
+    public function mount($room = null)
     {
-        $this->rooms = Room::where('bookable', true)->get();
+        if (null == $room) {
+            $this->rooms = Room::where('bookable', true)->get();
+        } else {
+            $this->rooms = Room::where('bookable', true)->where('id', $room)->get();
+        }
         foreach($this->rooms as $room) {
             $this->filter[$room->id] = true;
         }
 
         $this->events = Event::all();
-        $this->starts_at = CarbonImmutable::now()->startOfWeek();
+        $this->starts_at = Carbon::now()->startOfWeek();
+        $this->starts_at_immutable = CarbonImmutable::create($this->starts_at);
         $this->ends_at = Carbon::now()->endOfWeek();
         $this->week = Carbon::now()->isoWeek();
         $this->updateFilter();
@@ -36,6 +42,7 @@ class Calendar extends Component
     {
         $this->starts_at->addWeek();
         $this->ends_at->addWeek();
+        $this->starts_at_immutable = CarbonImmutable::create($this->starts_at);
         $this->week++;
         $this->updateFilter();
     }
@@ -44,6 +51,7 @@ class Calendar extends Component
     {
         $this->starts_at->subWeek();
         $this->ends_at->subWeek();
+        $this->starts_at_immutable = CarbonImmutable::create($this->starts_at);
         $this->week--;
         $this->updateFilter();
     }

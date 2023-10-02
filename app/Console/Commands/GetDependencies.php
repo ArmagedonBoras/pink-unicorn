@@ -66,7 +66,7 @@ class GetDependencies extends Command
     protected function getSummernote()
     {
         $path = 'public/vendor/summernote/';
-        $this->createDir(rtrim($path, '/').'/font');
+        $this->createDir(rtrim($path, '/') . '/font');
         $this->getFile('https://cdn.jsdelivr.net/npm/summernote@x.x.x/dist/summernote-bs5.min.css', $path . 'summernote-bs5.min.css');
         $this->getFile('https://cdn.jsdelivr.net/npm/summernote@x.x.x/dist/summernote-bs5.min.css.map', $path . 'summernote-bs5.css.map');
         $this->getFile('https://cdn.jsdelivr.net/npm/summernote@x.x.x/dist/font/summernote.woff2', $path . 'font/summernote.woff2');
@@ -99,6 +99,18 @@ class GetDependencies extends Command
         $this->getFile('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js.map', $path . 'moment-with-locales.min.js.map');
     }
 
+    protected function getQuill()
+    {
+        $path = 'public/vendor/quill/';
+        $this->createDir(rtrim($path, '/'));
+        $this->getFile('https://cdn.quilljs.com/1.3.6/quill.js', $path . 'quill.js');
+        $this->getFile('https://cdn.quilljs.com/1.3.6/quill.min.js', $path . 'quill.min.js');
+        $this->getFile('https://cdn.quilljs.com/1.3.6/quill.core.js', $path . 'quill.core.js');
+        $this->getFile('https://cdn.quilljs.com/1.3.6/quill.core.css', $path . 'quill.core.css');
+        $this->getFile('https://cdn.quilljs.com/1.3.6/quill.snow.css', $path . 'quill.snow.css');
+        $this->getFile('https://cdn.quilljs.com/1.3.6/quill.bubble.css', $path . 'quill.bubble.css');
+        // $this->getFile('', $path . '');
+    }
 
     /*
     protected function getTemplate()
@@ -119,9 +131,10 @@ class GetDependencies extends Command
     {
         $this->getBootstrap();
         $this->getJQuery();
-        $this->getAlpine();
+        // $this->getAlpine();
         $this->getFlatpickr();
         $this->getSummernote();
+        // $this->getQuill();
         $this->getTableSort();
         $this->getMoment();
         $this->info("Dependencies downloaded.");

@@ -20,15 +20,19 @@ class UserSeeder extends Seeder
     {
         app()->make(PermissionRegistrar::class)->forgetCachedPermissions();
         User::create([
-            'member_no' => 901,
-            'membrum_id' => 5482,
+            'profile_id' => null,
+            'name' => 'iPad',
+            'email' => 'kansli@armagedon.se',
+            'password' => Hash::make(Str::random(10)),
+        ]);
+        User::create([
+            'profile_id' => 901,
             'name' => 'Örjan Almén',
             'email' => 'orjan.almen@gmail.com',
             'password' => Hash::make(Str::random(10)),
         ]);
         User::create([
-            'member_no' => 944,
-            'membrum_id' => 5525,
+            'profile_id' => 944,
             'name' => 'Niklas Mårdby',
             'email' => 'niklas.mardby@gmail.com',
             'password' => Hash::make(Str::random(10)), // Hash::make('password')
@@ -41,8 +45,10 @@ class UserSeeder extends Seeder
         $userRole = Role::create(['label' => 'Användare/Inloggad', 'name' => 'user']);
         Role::create(['label' => 'Styrelse', 'name' => 'board']);
         Role::create(['label' => 'Kassör', 'name' => 'cashier']);
-        User::find(1)->assignRole('admin');
+        Role::create(['label' => 'iPad', 'name' => 'ipad']);
+        User::find(1)->assignRole('ipad');
         User::find(2)->assignRole('admin');
+        User::find(3)->assignRole('admin');
         app()->make(PermissionRegistrar::class)->forgetCachedPermissions();
     }
 }
