@@ -8,6 +8,6 @@ class Tablet extends Component
 {
     public function render()
     {
-        return view('livewire.ipad.ipad');
+        return view('livewire.tablet.tablet')->layout('layouts.tablet');
     }
 }

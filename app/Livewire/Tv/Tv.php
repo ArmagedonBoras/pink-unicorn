@@ -8,6 +8,6 @@ class Tv extends Component
 {
     public function render()
     {
-        return view('livewire.tv.tv');
+        return view('livewire.tv.tv')->layout('layouts.tv');
     }
 }

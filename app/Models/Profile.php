@@ -12,7 +12,7 @@ class Profile extends Model
     use HasFactory;
 
     public static $fm_fields = [
-        'id',
+        'member_no',
         'person_id',
         'paid_year',
         'name',

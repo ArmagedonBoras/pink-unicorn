@@ -21,21 +21,27 @@ class UserSeeder extends Seeder
         app()->make(PermissionRegistrar::class)->forgetCachedPermissions();
         User::create([
             'profile_id' => null,
-            'name' => 'iPad',
+            'member_no' => 0,
+            'name' => 'Tablet',
             'email' => 'kansli@armagedon.se',
-            'password' => Hash::make(Str::random(10)),
+            'person_id' => Str::random(20),
+            'password' => Hash::make(Str::random(20)),
         ]);
         User::create([
             'profile_id' => 901,
+            'member_no' => 901,
+            'person_id' => '750503-7593',
             'name' => 'Örjan Almén',
             'email' => 'orjan.almen@gmail.com',
-            'password' => Hash::make(Str::random(10)),
+            'password' => Hash::make(Str::random(20)),
         ]);
         User::create([
             'profile_id' => 944,
+            'member_no' => 944,
+            'person_id' => '750503-7594',
             'name' => 'Niklas Mårdby',
             'email' => 'niklas.mardby@gmail.com',
-            'password' => Hash::make(Str::random(10)), // Hash::make('password')
+            'password' => Hash::make(Str::random(20)), // Hash::make('password')
         ]);
 
         $permissionEdit = Permission::create(['name' => 'permissions-update', 'label' => 'Redigera rättigheter', 'group' => 'Rättigheter']);

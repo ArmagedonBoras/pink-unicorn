@@ -23,15 +23,19 @@ class EventController extends Controller
     public function create()
     {
         $event = new Event();
-        $event->starts_at = Carbon::now();
-        $event->ends_at = Carbon::now()->addHours(6);
+        $event->starts_at = Carbon::tomorrow('Europe/Stockholm')->hour = 6;
+        $event->ends_at = Carbon::tomorrow('Europe/Stockholm');
         $min = Carbon::tomorrow('Europe/Stockholm');
+        $min->hour = 6;
         $max = Carbon::tomorrow('Europe/Stockholm')->addMonth();
-        if (Gate::allows('book-longer-than-month')) {
+        if (Gate::allows('book-two-months')) {
             $max->addMonth();
         }
-        if (Gate::allows('book-longer-than-two-months')) {
-            $max->addMonths(8);
+        if (Gate::allows('book-two-months')) {
+            $max->addMonth();
+        }
+        if (Gate::allows('book-longer-than-three-months')) {
+            $max->addMonths(7);
         }
         $default = Carbon::tomorrow('Europe/Stockholm');
         return view('events.create')

@@ -10,6 +10,54 @@
  */
 
 
+namespace App\Models{
+/**
+ * App\Models\Event
+ *
+ * @property int $id
+ * @property \App\Models\User|null $owner
+ * @property \Illuminate\Support\Carbon $starts_at
+ * @property \Illuminate\Support\Carbon $ends_at
+ * @property int|null $created_by
+ * @property int|null $updated_by
+ * @property string|null $title
+ * @property string|null $body
+ * @property int|null $visibility
+ * @property int|null $scope
+ * @property int|null $availability
+ * @property int|null $activity
+ * @property int|null $activity_type
+ * @property int $signup
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Room> $rooms
+ * @property-read int|null $rooms_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
+ * @property-read int|null $users_count
+ * @method static \Database\Factories\EventFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Event newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Event newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Event query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereActivity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereActivityType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereAvailability($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereEndsAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereOwner($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereScope($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereSignup($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereStartsAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereVisibility($value)
+ */
+	class Event extends \Eloquent {}
+}
+
 namespace App\Models\Fortnox{
 /**
  * App\Models\Fortnox\FortnoxAccount
@@ -364,15 +412,71 @@ namespace App\Models\Fortnox{
 
 namespace App\Models{
 /**
+ * App\Models\Key
+ *
+ * @property int $id
+ * @property string $number
+ * @property int $holder
+ * @property int $tag_id
+ * @property int|null $created_by
+ * @property int|null $updated_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Key newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Key newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Key query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Key whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Key whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Key whereHolder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Key whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Key whereNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Key whereTagId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Key whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Key whereUpdatedBy($value)
+ */
+	class Key extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Locker
+ *
+ * @property int $id
+ * @property int $number
+ * @property int $size
+ * @property int|null $user_id
+ * @property int|null $created_by
+ * @property int|null $updated_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Locker newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Locker newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Locker query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Locker whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Locker whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Locker whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Locker whereNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Locker whereSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Locker whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Locker whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Locker whereUserId($value)
+ */
+	class Locker extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Menu
  *
  * @property int $id
  * @property string $name
+ * @property string $icon
  * @property string $link
  * @property string $gate
  * @property int $sort_order
  * @property string $parent
  * @property int|null $page_id
+ * @property int $divider
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read mixed $full_link
@@ -383,7 +487,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Menu newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Menu query()
  * @method static \Illuminate\Database\Eloquent\Builder|Menu whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereDivider($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Menu whereGate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Menu whereIcon($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Menu whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Menu whereLink($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Menu whereName($value)
@@ -442,6 +548,120 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Payments
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string $payable_type
+ * @property int $payable_id
+ * @property int $amount
+ * @property int $tag_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Payments newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Payments newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Payments query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Payments whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payments whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payments whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payments wherePayableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payments wherePayableType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payments whereTagId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payments whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payments whereUserId($value)
+ */
+	class Payments extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Profile
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property int|null $member_no
+ * @property string|null $address
+ * @property string|null $zip
+ * @property string|null $city
+ * @property string|null $person_id
+ * @property string|null $phone
+ * @property int $paid_year
+ * @property int $yearly_fee
+ * @property string $supporting
+ * @property string $female
+ * @property string $bsk
+ * @property string|null $created_by
+ * @property string|null $updated_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereBsk($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereFemale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereMemberNo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePaidYear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePersonId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereSupporting($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereYearlyFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereZip($value)
+ */
+	class Profile extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Room
+ *
+ * @property int $id
+ * @property int $owner
+ * @property string $name
+ * @property string $short
+ * @property string $icon
+ * @property string $color
+ * @property string $text_color
+ * @property string $description
+ * @property int $bookable
+ * @property int|null $created_by
+ * @property int|null $updated_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Event> $events
+ * @property-read int|null $events_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Room newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Room newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Room query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereBookable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereIcon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereOwner($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereShort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereTextColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereUpdatedBy($value)
+ */
+	class Room extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Tag
  *
  * @property int $id
@@ -471,7 +691,9 @@ namespace App\Models{
  * App\Models\User
  *
  * @property int $id
- * @property int|null $member
+ * @property int $member_no
+ * @property string $person_id
+ * @property int|null $profile_id
  * @property string $name
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
@@ -482,12 +704,17 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property int|null $current_team_id
  * @property string|null $profile_photo_path
+ * @property string|null $login_at
+ * @property string|null $last_login_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Event> $events
+ * @property-read int|null $events_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission> $permissions
  * @property-read int|null $permissions_count
+ * @property-read \App\Models\Profile|null $profile
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Role> $roles
  * @property-read int|null $roles_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
@@ -503,9 +730,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereMember($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLastLoginAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLoginAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereMemberNo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePersonId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereProfileId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorConfirmedAt($value)

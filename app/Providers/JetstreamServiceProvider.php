@@ -33,7 +33,7 @@ class JetstreamServiceProvider extends ServiceProvider
 
             $user = User::where('member_no', $request->email)->first();
             if (!$user) {
-                $user = User::where('email', $request->email)->first();
+                $user = User::where('person_id', $request->email)->first();
             }
 
             if ($user &&

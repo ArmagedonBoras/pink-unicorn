@@ -80,11 +80,13 @@
                                 @if ($child->divider)
                                     <hr class="dropdown-divider">
                                 @else
-                                    @if (!empty($child->icon))
-                                        <x-icon>{{ $child->icon }}</x-icon>&nbsp;
-                                    @endif
                                     <li><a href="/anvandare/{{ $child->link }}"
-                                            class="{{ request()->path() == 'anvandare/' . $child->link ? 'active ' : '' }}dropdown-item fs-6 fw-bolder text-uppercase">{{ $child->name }}</a>
+                                            class="{{ request()->path() == 'anvandare/' . $child->link ? 'active ' : '' }}dropdown-item fs-6 fw-bolder text-uppercase">
+                                            @if (!empty($child->icon))
+                                                <x-icon>{{ $child->icon }}</x-icon>&nbsp;
+                                            @endif
+                                            {{ $child->name }}
+                                        </a>
                                     </li>
                                 @endif
                             @endforeach

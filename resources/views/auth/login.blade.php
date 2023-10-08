@@ -12,14 +12,16 @@
         </div>
     </div>
     @endenv
+
     <form method="POST" action="{{ route('login') }}">
         @csrf
-        <div class="row justify-content-center">
-            <div class="col-10 col-md-6 col-lg-4">Här kan du som medlem logga in för att komma åt våra medlemssidor. Är du inte medlem så kan du
+        <div class="row justify-content-center mb-4">
+            <div class="col-10 col-md-6 col-lg-4">Här kan du som medlem logga in för att komma åt våra medlemssidor. Är
+                du inte medlem så kan du
                 <a href="{{ route('register') }}">bli medlem här</a>.
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mb-4">
             <div class="col-10 col-md-6 col-lg-4">
                 <x-form-input name="email" label="Medlemsnummer eller E-postadress" />
                 <x-form-input name="password" type="password" label="Lösenord" />
@@ -36,4 +38,15 @@
             </div>
         </div>
     </form>
+
+    <div class="row justify-content-center mb-4">
+        <div class="col-10 col-md-6 col-lg-4">
+            Om du har konfigurerat din koppling kan du också logga in med något av dessa system:
+        </div>
+    </div>
+    <div class="row justify-content-center mb-4">
+        @foreach (\App\Http\Controllers\OauthController::$providers as $provider => $icon)
+            <a href="/login/{{ $provider }}" class="btn col"><x-icon>{{ $icon }}</x-icon></a>
+        @endforeach
+    </div>
 </x-app-layout>

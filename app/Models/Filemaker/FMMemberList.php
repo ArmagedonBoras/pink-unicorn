@@ -23,7 +23,7 @@ class FMMemberList extends FMModel
     protected $layout = "Member | List";
 
     protected $fieldMapping = [
-        'Member Card Number' => 'id',
+        'Member Card Number' => 'member_no',
         'Social Number' => 'person_id',
         'Member | Member Object | Contract::Year' => 'paid_year',
     ];
