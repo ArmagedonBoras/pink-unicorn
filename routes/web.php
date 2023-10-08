@@ -12,6 +12,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\OauthController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleMembersController;
@@ -38,13 +39,22 @@ Route::get('/dashboard', function () {
     return (Auth::check()) ? redirect(settings('landing_login', '/hem')) : redirect(settings('landing_login', '/hem'));
 });
 
+// oauth login
+Route::get('login/{provider}', [OauthController::class, 'redirectToProvider']);
+Route::get('login/{provider}/callback', [OauthController::class, 'callbackFromProvider']);
+
+// Special routes for checkin teblet and monitoring TV
 Route::get('/tablet', Tablet::class);
 Route::get('/tv', Tv::class);
+
+// Ordinary routes
 Route::get('/anvandare/minsida', ShowPage::class)->name('mypage.show');
 Route::view('/kalender', 'events.calendar')->name('calendar');
 Route::post('/roller/{role}/medlemmar', [RoleMembersController::class, 'store'])->name('rolemembers.store');
 Route::delete('/roller/{role}/medlemmar/{user}', [RoleMembersController::class, 'destroy'])->name('rolemembers.destroy');
 Route::resource('evenemang', EventController::class)->names('events');
+
+// Admin stuff
 Route::group(
     ['middleware' => ['role:admin'], 'prefix' => 'admin'],
     function () {

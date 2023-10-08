@@ -10,6 +10,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\PageSeeder;
 use Database\Seeders\RoomSeeder;
 use Database\Seeders\UserSeeder;
+use Database\Seeders\TabletSeeder;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
@@ -28,8 +29,8 @@ class DatabaseSeeder extends Seeder
             PageSeeder::class,
             RoomSeeder::class,
             EventSeeder::class,
-            TagSeeder::class
-
+            TagSeeder::class,
+            TabletSeeder::class,
         ]);
         app()->make(PermissionRegistrar::class)->forgetCachedPermissions();
     }

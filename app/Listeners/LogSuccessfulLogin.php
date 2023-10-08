@@ -31,7 +31,7 @@ class LogSuccessfulLogin
          * @var App\Models\User
          */
         $user = $event->user;
-        $user->previous_login_at = $user->login_at;
+        $user->last_login_at = $user->login_at;
         $user->login_at = Carbon::now();
         $user->save();
     }

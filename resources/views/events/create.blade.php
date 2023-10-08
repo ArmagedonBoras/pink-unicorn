@@ -8,11 +8,18 @@
             :value="$default" />
         <x-booking-date-hour-picker name="ends_at" :model="$event" :min="$min" :max="$max" />
         <x-form-input name="title" :model="$event" />
+        <x-form-tag-select name="activity_type" :model="$event" type="events.activity_type" />
+        @can('book-wide-scope')
+            <x-form-tag-select name="scope" :model="$event" type="events.scope" />
+        @endcan
+        <x-form-tag-select name="availability" :model="$event" type="events.availability" />
+        <x-form-tag-select name="visibility" :model="$event" type="events.visibility" />
+        <x-form-tag-select name="activity" :model="$event" type="events.activity" />
         <x-form-editor name="body" :model="$event" />
         @can('book-several-rooms')
-            <x-form-checkbox-inline name="room" :model="$event" :options="$event->available_rooms()" />
+            <x-form-checkbox-inline name="rooms" :model="$event" :options="$event->available_rooms()" />
         @else
-            <x-form-radio-inline name="room" :model="$event" :options="$event->available_rooms()" />
+            <x-form-radio-inline name="rooms" :model="$event" :options="$event->available_rooms()" />
         @endcan
         <x-form-savebutton submit="{{ empty($event->id) ? 'Skapa' : 'Spara' }}" />
         {{--

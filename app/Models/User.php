@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Models\Event;
 use App\Models\Profile;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 use Laravel\Jetstream\HasProfilePhoto;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -41,6 +42,7 @@ class User extends Authenticatable
         'name',
         'email',
         'member_no',
+        'person_id',
     ];
 
     /**
@@ -81,5 +83,10 @@ class User extends Authenticatable
     public function profile(): BelongsTo
     {
         return $this->belongsTo(Profile::class);
+    }
+
+    public function oauth_providers()
+    {
+        return DB::table('oauth_providers')->where('user_id', $this->id)->get();
     }
 }
