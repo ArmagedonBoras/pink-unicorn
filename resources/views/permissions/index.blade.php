@@ -8,9 +8,10 @@
         <table class="table table-striped table-bordered">
             <thead>
                 <th class="col splitted-cell-background">
-                    Rättigheter <x-icon>arrow-down</x-icon>
-                </th><th>
-                    Roller <x-icon>arrow-right</x-icon>
+                    Rättigheter <x-bs-icon name="arrow down" />
+                </th>
+                <th>
+                    Roller <x-bs-icon name="arrow-right" />
                 </th>
                 @foreach ($roles as $role)
                     <th class="col text-nowrap">
@@ -18,7 +19,7 @@
                         @can('roles-update')
                             &nbsp;<a href="{{ route('roles.edit', $role->id) }}"
                                 class="fw-bolder text-decoration-none text-dark">
-                                <x-icon>pencil-square</x-icon>
+                                <x-bs-icon name="pencil-square" />&nbsp;
                             </a>
                         @endcan
                     </th>
@@ -34,7 +35,7 @@
                             <td colspan="2"><span>{{ $permission->label ?? $permission->name }}&nbsp;<a
                                         href="{{ route('permissions.edit', $permission->id) }}"
                                         class="fw-bolder text-decoration-none text-dark">
-                                        <x-icon>pencil-square</x-icon>
+                                        <x-bs-icon name="pencil-square" />&nbsp;
                                     </a></span></td>
                             @foreach ($roles as $role)
                                 <td class="text-center">

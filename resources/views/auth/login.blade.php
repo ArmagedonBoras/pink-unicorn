@@ -46,7 +46,7 @@
     </div>
     <div class="row justify-content-center mb-4">
         @foreach (\App\Http\Controllers\OauthController::$providers as $provider => $icon)
-            <a href="/login/{{ $provider }}" class="btn col"><x-icon>{{ $icon }}</x-icon></a>
+            <a href="/login/{{ $provider }}" class="btn col"><x-bs-icon :name="$icon" /></a>
         @endforeach
     </div>
 </x-app-layout>

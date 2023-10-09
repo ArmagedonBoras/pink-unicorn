@@ -9,7 +9,7 @@
         {{ $page->title }}
         @can('pages-update')
             <a href="{{ route('pages.edit', $page) }}" title="Redigera sida">
-                <x-icon>pencil-square</x-icon>
+                <x-bs-icon name="pencil-square" />&nbsp;
             </a>
         @endcan
     </x-slot>

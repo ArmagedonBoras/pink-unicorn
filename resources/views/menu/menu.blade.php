@@ -2,7 +2,7 @@
     <div class="container">
         <!-- Logo -->
         <a class="navbar-brand me-4" href="/">
-            <img src="{{ asset('images/logo.jpg') }}" style="height: 50px">
+            <img src="{{ asset('images/armagedon-liggande.svg') }}" type="image/svg+xml" style="height: 50px">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
             aria-controls="#navbar" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -23,9 +23,9 @@
                                 class="{{ Str::startsWith(request()->path(), $item->link) ? 'active ' : '' }}nav-link fs-6 fw-bolder text-uppercase"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 @if (!empty($item->icon))
-                                    <x-icon>{{ $item->icon }}</x-icon>&nbsp;
+                                    <x-bs-icon :name="$item->icon" />&nbsp;
                                 @endif
-                                {{ $item->name }}&nbsp;<x-icon>caret-down-fill</x-icon>
+                                {{ $item->name }}&nbsp;<x-bs-icon name="caret-down-fill" />
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-right animate slideIn"
@@ -37,7 +37,7 @@
                                         <li><a href="/{{ $item->link }}/{{ $child->link }}"
                                                 class="{{ request()->path() == $child->link . '/' . $child->link ? 'active ' : '' }}dropdown-item fs-6 fw-bolder text-uppercase">
                                                 @if (!empty($child->icon))
-                                                    <x-icon>{{ $child->icon }}</x-icon>&nbsp;
+                                                    <x-bs-icon :name="$child->icon" />&nbsp;
                                                 @endif
                                                 {{ $child->name }}
                                             </a>
@@ -50,7 +50,7 @@
                             <a href="{{ Str::startsWith($item->link, 'http') ? $item->link : '/' . $item->link }}"
                                 class="{{ request()->path() == $item->link ? 'active ' : '' }}nav-link fs-6 fw-bolder text-uppercase">
                                 @if (!empty($item->icon))
-                                    <x-icon>{{ $item->icon }}</x-icon>&nbsp;
+                                    <x-bs-icon :name="$item->icon" />&nbsp;
                                 @endif
                                 {{ $item->name }}
                             </a>
@@ -67,13 +67,14 @@
                         <a id="UserDropdown" href="#"
                             class="{{ Str::startsWith(request()->path(), 'anvandare') ? 'active ' : '' }}nav-link fs-6 fw-bolder text-uppercase"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <x-icon>person</x-icon>&nbsp;{{ Auth::user()->name }}&nbsp;<x-icon>caret-down-fill</x-icon>
+                            <x-bs-icon name="person" />&nbsp;{{ Auth::user()->name }}&nbsp;<x-bs-icon
+                                name="caret-down-fill" />
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="UserDropdown">
                             <li><a href="/anvandare/minsida"
                                     class="{{ request()->path() == 'anvandare/minsida' ? 'active ' : '' }}dropdown-item fs-6 fw-bolder text-uppercase">
-                                    <x-icon>person-badge</x-icon>&nbsp;Min sida
+                                    <x-bs-icon name="person-badge" />&nbsp;Min sida
                                 </a>
                             </li>
                             @foreach (menu('users') as $child)
@@ -83,7 +84,7 @@
                                     <li><a href="/anvandare/{{ $child->link }}"
                                             class="{{ request()->path() == 'anvandare/' . $child->link ? 'active ' : '' }}dropdown-item fs-6 fw-bolder text-uppercase">
                                             @if (!empty($child->icon))
-                                                <x-icon>{{ $child->icon }}</x-icon>&nbsp;
+                                                <x-bs-icon :name="$child->icon" />&nbsp;
                                             @endif
                                             {{ $child->name }}
                                         </a>
@@ -96,7 +97,7 @@
                             <li>
                                 <a class="dropdown-item fs-6 fw-bolder text-uppercase" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    <x-icon>door-closed-fill</x-icon>&nbsp;Logga ut
+                                    <x-bs-icon name="door-closed-fill" />&nbsp;Logga ut
                                 </a>
                             </li>
                             <form method="POST" id="logout-form" action="{{ route('logout') }}">
@@ -107,8 +108,8 @@
                 @else
                     <li>
                         <a href="{{ route('login') }}"
-                            class="{{ request()->path() == 'login' ? 'active ' : '' }}nav-link fs-6 fw-bolder text-uppercase"><x-icon>door-open</x-icon>&nbsp;Logga
-                            in</a>
+                            class="{{ request()->path() == 'login' ? 'active ' : '' }}nav-link fs-6 fw-bolder text-uppercase"><x-bs-icon
+                                name="door-open" />&nbsp;Logga in</a>
                     </li>
                 @endauth
             </ul>

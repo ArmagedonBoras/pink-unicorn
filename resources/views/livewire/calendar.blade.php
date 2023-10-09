@@ -12,10 +12,10 @@
             @endforeach
         @endif
         <span>{{ $events->count() }} evenemang</span>
-        <span wire:click='subWeek'><x-icon>caret-left-fill</x-icon></span>
+        <span wire:click='subWeek'><x-bs-icon name="caret-left-fill" /></span>
         <span>Vecka {{ $week }} {{ $starts_at->format('Y-m-d') }} -
             {{ $starts_at_immutable->addDays(6)->format('Y-m-d') }}</span>
-        <span wire:click='addWeek'><x-icon>caret-right-fill</x-icon></span>
+        <span wire:click='addWeek'><x-bs-icon name="caret-right-fill" /></span>
 
     </div>
     <div class="row">
@@ -29,7 +29,8 @@
                         <li class="list-group-item">
                             {{ $event->starts_at->format('H:i') }}
                             @foreach ($event->rooms as $room)
-                                <x-icon :color="$room->color" :title="$room->short">circle-fill</x-icon>
+                                <x-icon :color="$room->color" :title="$room->short">circle-fill
+                                    </x-bs-icon>
                             @endforeach
                         </li>
                     @endforeach

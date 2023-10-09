@@ -22,7 +22,7 @@
                             <li><a href="/tablet/{{ $child->link }}"
                                     class="{{ request()->path() == 'tablet/' . $child->link ? 'active ' : '' }}nav-link fs-6 fw-bolder text-uppercase">
                                     @if (!empty($child->icon))
-                                        <x-icon>{{ $child->icon }}</x-icon>&nbsp;
+                                        <x-bs-icon :name="$child->icon" />&nbsp;
                                     @endif
                                     {{ $child->name }}
                                 </a>

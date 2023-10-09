@@ -30,10 +30,12 @@ namespace App\Models{
  * @property int $signup
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\EventOrganizer> $event_organizers
+ * @property-read int|null $event_organizers_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\EventSignup> $event_signups
+ * @property-read int|null $event_signups_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Room> $rooms
  * @property-read int|null $rooms_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
- * @property-read int|null $users_count
  * @method static \Database\Factories\EventFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Event newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Event newQuery()
@@ -56,6 +58,29 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereVisibility($value)
  */
 	class Event extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\EventOrganizer
+ *
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|EventOrganizer newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|EventOrganizer newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|EventOrganizer query()
+ */
+	class EventOrganizer extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\EventSignup
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|EventSignup newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|EventSignup newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|EventSignup query()
+ */
+	class EventSignup extends \Eloquent {}
 }
 
 namespace App\Models\Fortnox{
@@ -548,7 +573,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Payments
+ * App\Models\Payment
  *
  * @property int $id
  * @property int $user_id
@@ -558,19 +583,19 @@ namespace App\Models{
  * @property int $tag_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|Payments newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Payments newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Payments query()
- * @method static \Illuminate\Database\Eloquent\Builder|Payments whereAmount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Payments whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Payments whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Payments wherePayableId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Payments wherePayableType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Payments whereTagId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Payments whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Payments whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment wherePayableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment wherePayableType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereTagId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereUserId($value)
  */
-	class Payments extends \Eloquent {}
+	class Payment extends \Eloquent {}
 }
 
 namespace App\Models{
