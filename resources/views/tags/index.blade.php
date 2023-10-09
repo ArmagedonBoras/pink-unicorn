@@ -14,11 +14,12 @@
                             @foreach ($groups as $group => $tags)
                                 <dt>{{ Str::ucfirst($group) }}&nbsp;<a
                                         href="{{ route('tags.create') }}?type={{ $module }}.{{ $group }}">
-                                        <x-icon>plus-square</x-icon>
-                                    </a></dt>
+                                        <x-bs-icon name="plus-square" />&nbsp;
+                                    </a>
+                                </dt>
                                 @foreach ($tags as $group => $tag)
                                     <dd>{{ $tag->label }}&nbsp;<a href="{{ route('tags.edit', $tag->id) }}">
-                                            <x-icon>pencil-square</x-icon>
+                                            <x-bs-icon name="pencil-square" />
                                         </a></dd>
                                 @endforeach
                             @endforeach

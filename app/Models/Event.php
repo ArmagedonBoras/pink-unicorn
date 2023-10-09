@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use Attribute;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\EventOrganizer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Event extends Model
@@ -27,9 +28,14 @@ class Event extends Model
         return $this->belongsToMany(Room::class)->withTimestamps();
     }
 
-    public function users(): BelongsToMany
+    public function event_signups(): BelongsToMany
     {
-        return $this->belongsToMany(User::class)->withTimestamps();
+        return $this->belongsToMany(EventSignup::class)->withTimestamps();
+    }
+
+    public function event_organizers(): BelongsToMany
+    {
+        return $this->belongsToMany(EventOrganizer::class)->withTimestamps();
     }
 
     public function available_rooms()

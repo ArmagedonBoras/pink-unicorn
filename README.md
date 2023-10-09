@@ -58,4 +58,8 @@ Laravel is set up with this boilerplate:
  | Tag | Functional | Categorized Tagging |
  | Key | | Key management |
  | Locker | | Locker management |
- | Fortnox | Functional | Bookeeping related stuff |
+ | Payment | | Payment management |
+ | Profile | | Local cache from Membrum and additional data of a member |
+ | Fortnox => * | Functional | Link to Fortnox bookkeeping system |
+ | Filemaker => FMMemberList | Functional | Link to Membrum database for member listing |
+ | Filemaker => FMMemberEdit | Functional | Link to Membrum database for member information |

@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Armagedon') }}</title>
-    <link rel="shortcut icon" type="image/jpg" href="{{ asset('images/icon.jpg') }}">
+    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('images/armagedon-icon.svg') }}">
 
     <!-- Styles -->
     <link href="{{ asset('vendor/bootstrap/bootstrap.min.css') }}" rel="stylesheet">

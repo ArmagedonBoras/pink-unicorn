@@ -21,28 +21,28 @@
                         <a id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" role="tab"
                             aria-controls="home-tab-pane" aria-selected="true"
                             class="nav-link fs-6 fw-bolder text-uppercase">
-                            <x-icon>person</x-icon>&nbsp;Närvaro
+                            <x-bs-icon name="person" />&nbsp;Närvaro
                         </a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a id="home-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" role="tab"
                             aria-controls="home-tab-pane" aria-selected="true"
                             class="nav-link fs-6 fw-bolder text-uppercase">
-                            <x-icon>calendar</x-icon>&nbsp;Bokningar
+                            <x-bs-icon name="calendar" />&nbsp;Bokningar
                         </a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a id="home-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" role="tab"
                             aria-controls="home-tab-pane" aria-selected="true"
                             class="nav-link fs-6 fw-bolder text-uppercase">
-                            <x-icon>person</x-icon>&nbsp;Contact
+                            <x-bs-icon name="person" />&nbsp;Contact
                         </a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a id="home-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" role="tab"
                             aria-controls="home-tab-pane" aria-selected="true"
                             class="nav-link fs-6 fw-bolder text-uppercase">
-                            <x-icon>person</x-icon>&nbsp;Disabled
+                            <x-bs-icon name="person" />&nbsp;Disabled
                         </a>
                     </li>
                     <!-- endcache -->
