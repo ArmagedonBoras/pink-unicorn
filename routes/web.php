@@ -1,8 +1,9 @@
 <?php
 
 use App\Livewire\Tv\Tv;
-use App\Livewire\Tablet\Tablet;
 use App\Livewire\Calendar;
+use App\Livewire\Members\Become;
+use App\Livewire\Tablet\Tablet;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
@@ -40,8 +41,9 @@ Route::get('/dashboard', function () {
 });
 
 // oauth login
-Route::get('login/{provider}', [OauthController::class, 'redirectToProvider']);
+Route::get('login/{provider}', [OauthController::class, 'redirectToProvider'])->name('provider.redirectToProvider');
 Route::get('login/{provider}/callback', [OauthController::class, 'callbackFromProvider']);
+Route::delete('login/{provider}/delete', [OauthController::class, 'destroy'])->name('provider.destroy');
 
 // Special routes for checkin teblet and monitoring TV
 Route::get('/tablet', Tablet::class);
@@ -49,6 +51,7 @@ Route::get('/tv', Tv::class);
 
 // Ordinary routes
 Route::get('/anvandare/minsida', ShowPage::class)->name('mypage.show');
+Route::get('/registrera', Become::class)->name('register');
 Route::view('/kalender', 'events.calendar')->name('calendar');
 Route::post('/roller/{role}/medlemmar', [RoleMembersController::class, 'store'])->name('rolemembers.store');
 Route::delete('/roller/{role}/medlemmar/{user}', [RoleMembersController::class, 'destroy'])->name('rolemembers.destroy');

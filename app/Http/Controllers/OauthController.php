@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OauthProvider;
 use Socialite;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -10,57 +11,51 @@ use Illuminate\Support\Facades\DB;
 
 class OauthController extends Controller
 {
-    // provider => icon
-    public static $providers = [
-//        'apple' => 'apple',
-//        'facebook' => 'facebook',
-        'github' => 'github',
-//        'google' => 'google',
-//        'instagram' => 'instagram',
-//        'microsoft' => 'microsoft',
-//        'reddit' => 'reddit',
-        'twitter' => 'twitter',
-        'discord' => 'discord',
-    ];
-
-    protected $validProviders = [
-//        'apple',
-//        'facebook',
-        'github',
-//        'google',
-//        'instagram',
-//        'microsoft',
-//        'reddit',
-        'twitter',
-        'discord',
-    ];
-
     public function redirectToProvider($provider)
     {
-        abort_if(!\in_array($provider, $this->validProviders), 404);
+        abort_if(!array_key_exists($provider, OauthProvider::$providers), 404);
+
         return Socialite::driver($provider)->redirect();
     }
 
     public function callbackFromProvider($provider)
     {
-        $user = null;
-        $provider = Str::lower($provider);
-        abort_if(!\in_array($provider, $this->validProviders), 404);
-        $oauthUser = Socialite::driver($provider)->user();
+        if (auth()->user()) {
+            // register callback
+            $oauthUser = Socialite::driver($provider)->user();
+            OauthProvider::create([
+                'user_id' => auth()->id(),
+                'provider' => $provider,
+                'provider_id' => $oauthUser->getId(),
+            ]);
+            return redirect()->route('mypage.show');
+        } else {
+            // log in user
+            $user = null;
+            $provider = Str::lower($provider);
+            abort_if(!array_key_exists($provider, OauthProvider::$providers), 404);
+            $oauthUser = Socialite::driver($provider)->user();
 
-        $oauthProvider = DB::table('oauth_providers')
-            ->where('provider', $provider)
-            ->where('provider_id', $oauthUser->getId())->get();
+            $oauthProvider = OauthProvider::where('provider', $provider)
+                ->where('provider_id', $oauthUser->getId())
+                ->with('user')
+                ->first();
 
-        if (count($oauthProvider) > 0) {
-            $user = User::find($oauthProvider[0]->user_id);
+            if ($oauthProvider?->user) {
+                auth()->login($oauthProvider->user, true);
+                return redirect('/dashboard');
+            }
+            abort(403, 'Kunde inte logga in via ' . $provider . '. Har du kopplat din användare i dina inställningar?');
         }
-        if ($user) {
-            auth()->login($user, true);
-            return redirect('/dashboard');
-        }
-        abort(403, 'Kunde inte logga in via ' . $provider . '. Har du kopplat din användare i dina inställningar?');
-        // dd($oauthUser, $provider, $user);
 
     }
+
+    public function destroy($provider)
+    {
+        abort_if(!auth()->id(), 403);
+        $p = OauthProvider::where('provider', $provider)->where('user_id', auth()->id())->first();
+        $p?->delete();
+        return redirect()->route('mypage.show');
+    }
+
 }
