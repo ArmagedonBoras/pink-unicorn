@@ -6,7 +6,6 @@ namespace App\Models;
 use App\Models\Event;
 use App\Models\Profile;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Facades\DB;
 use Laravel\Jetstream\HasProfilePhoto;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -15,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -82,11 +82,20 @@ class User extends Authenticatable
 
     public function profile(): BelongsTo
     {
-        return $this->belongsTo(Profile::class);
+        return $this->belongsTo(Profile::class, 'member_no', 'member_no');
     }
 
-    public function oauth_providers()
+    public function oauth_providers(): HasMany
     {
-        return DB::table('oauth_providers')->where('user_id', $this->id)->get();
+        return $this->hasMany(OauthProvider::class);
+    }
+
+    public function providers()
+    {
+        $available = OauthProvider::$providers;
+        foreach ($this->oauth_providers as $p) {
+            $available[$p->provider] = $p;
+        }
+        return $available;
     }
 }

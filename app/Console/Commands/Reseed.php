@@ -31,6 +31,7 @@ class Reseed extends Command
         $this->call('optimize:clear');
         $this->call('config:clear');
         $this->call('storage:link', ['--relative' => true, '--force' => true]);
+        $this->call('ide-helper:generate');
         if (App::environment() != 'production') {
             $this->call('migrate:fresh', ['--seed' => true]);
         }

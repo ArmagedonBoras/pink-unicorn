@@ -26,14 +26,14 @@ class MemberTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make("Nr", "id")
+            Column::make("Nr", "member_no")
                 ->sortable(),
             Column::make('Namn', 'owner.name')
                 ->sortable(),
             //Column::make('E-postadress', 'owner.email')
             //    ->hideif(true),
             Column::make('E-postadress')
-                ->format(fn ($value, $row, Column $column) => Member::find($row->id)->email_link)
+              //  ->format(fn ($value, $row, Column $column) => Member::find($row->id)->email_link)
                 ->html()
                 ->sortable(),
             Column::make('(Mobil-) Telefon', 'customer.phone1')
