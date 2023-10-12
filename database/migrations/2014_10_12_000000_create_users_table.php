@@ -24,6 +24,7 @@ return new class () extends Migration {
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamp('login_at')->nullable();
             $table->timestamp('last_login_at')->nullable();
+            $table->integer('points');
             $table->timestamps();
         });
     }

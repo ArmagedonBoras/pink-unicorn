@@ -12,6 +12,39 @@
 
 namespace App\Models{
 /**
+ * App\Models\Article
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment> $comments
+ * @property-read int|null $comments_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Article newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article query()
+ */
+	class Article extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Comment
+ *
+ * @property-read \App\Models\User|null $author
+ * @property-read \App\Models\User|null $creator
+ * @property-read \App\Models\User|null $destroyer
+ * @property-read \App\Models\User|null $editor
+ * @property-read mixed $body
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment filter(\App\Filters\CommentFilters $filters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment withoutTrashed()
+ */
+	class Comment extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Event
  *
  * @property int $id
@@ -30,6 +63,8 @@ namespace App\Models{
  * @property int $signup
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment> $comments
+ * @property-read int|null $comments_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\EventOrganizer> $event_organizers
  * @property-read int|null $event_organizers_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\EventSignup> $event_signups
@@ -433,6 +468,39 @@ namespace App\Models\Fortnox{
  * @method static \Illuminate\Database\Eloquent\Builder|FortnoxVoucherSeries whereYear($value)
  */
 	class FortnoxVoucherSeries extends \Eloquent {}
+}
+
+namespace App\Models\Gamification{
+/**
+ * App\Models\Gamification\Achievement
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Achievement newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Achievement newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Achievement query()
+ */
+	class Achievement extends \Eloquent {}
+}
+
+namespace App\Models\Gamification{
+/**
+ * App\Models\Gamification\Badge
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Badge newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Badge newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Badge query()
+ */
+	class Badge extends \Eloquent {}
+}
+
+namespace App\Models\Gamification{
+/**
+ * App\Models\Gamification\Point
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Point newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Point newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Point query()
+ */
+	class Point extends \Eloquent {}
 }
 
 namespace App\Models{
