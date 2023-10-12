@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Page;
+use App\Traits\HasGate;
 use Illuminate\Support\Collection;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Menu extends Model
 {
     use HasFactory;
+    use HasGate;
+
     // protected $with = ['page'];
     protected $children = null;
 
@@ -30,44 +33,6 @@ class Menu extends Model
         }
 
         return $approved;
-    }
-
-    public function isAuthorized(): bool
-    {
-        switch ($this->gate) {
-            case '':
-                return true;
-                break;
-            case 'guest':
-                if (!Auth::check()) {
-                    return true;
-                }
-                break;
-            case 'user':
-                if (Auth::check()) {
-                    return true;
-                }
-                break;
-            case 'hidden':
-                return false;
-                break;
-            default:
-                if (Auth::check() && Role::where('name', $this->gate)->exists()) {
-                    /**
-                     * @var $user App\Models\User
-                     */
-                    $user = Auth::user();
-                    if ($user->hasRole($this->gate)) {
-                        return true;
-                    }
-                    break;
-                }
-                if (Gate::allows($this->gate)) {
-                    return true;
-                }
-                break;
-        }
-        return false;
     }
 
     public static function getParents()
@@ -115,9 +80,9 @@ class Menu extends Model
     public function getLink()
     {
         if ($this->parent === '') {
-            return '/'.$this->link;
+            return '/' . $this->link;
         }
-        return $this->getParent()->getLink()."/".$this->link;
+        return $this->getParent()->getLink() . "/" . $this->link;
     }
 
     public function getGateOptionsAttribute()
