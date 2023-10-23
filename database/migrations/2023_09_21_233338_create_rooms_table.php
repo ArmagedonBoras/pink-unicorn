@@ -12,7 +12,7 @@ return new class () extends Migration {
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("owner");
+            $table->foreignId("maintained_by");
             $table->string('name');
             $table->string('short');
             $table->string('icon')->default('');

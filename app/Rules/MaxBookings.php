@@ -21,7 +21,7 @@ class MaxBookings implements ValidationRule
     public function validate($attribute, $value, Closure $fail): void
     {
         $user = auth()->user();
-        $events = Event::where('starts_at', '>', Carbon::today()->addDay())->where('owner', $user->member_id)->get();
+        $events = Event::where('starts_at', '>', Carbon::today()->addDay())->where('owned_by', $user->member_id)->get();
         if ($events->count() >= $user->profile->max_bookings) {
             $fail('Användaren har redan max antal bokningar');
 

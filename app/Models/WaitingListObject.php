@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Models\Gamification;
+namespace App\Models;
 
-use App\Traits\Taggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Achievement extends Model
+class WaitingListObject extends Model
 {
     use HasFactory;
 }

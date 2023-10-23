@@ -34,6 +34,7 @@ class Reseed extends Command
         $this->call('ide-helper:generate');
         if (App::environment() != 'production') {
             $this->call('migrate:fresh', ['--seed' => true]);
+            //$this->call('db:seed', ['--class' => 'ArticleSeeder']);
         }
     }
 }

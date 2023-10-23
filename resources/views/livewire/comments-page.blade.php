@@ -108,7 +108,7 @@
                                 <div class="d-flex justify-content-between">
                                     <h4 class="card-title">{{ $item->title }}
                                         @if ($item->created_at > (Auth::user()->previous_login_at ?? Auth::user()->created_at))
-                                            <x-icon title="Ny sedan föregående inloggning">newspaper</x-bs-icon>
+                                            <x-bs-icon title="Ny sedan föregående inloggning">newspaper</x-bs-icon>
                                         @endif
                                     </h4>
                                     <span>

@@ -14,16 +14,14 @@ return new class () extends Migration {
             $table->id();
             $table->string('title');
             $table->text('body');
+            $table->string('slug')->default('');
             $table->boolean('pinned')->default(false);
-            $table->string('gate');
-            $table->date('expire_at');
+            $table->string('gate')->default('');
             $table->timestamps();
             $table->softDeletes();
             $table->foreignId('created_by')->nullable();
             $table->foreignId('updated_by')->nullable();
             $table->foreignId('deleted_by')->nullable();
-            $table->index('expire_at');
-            $table->index(['pinned', 'expire_at']);
         });
     }
 

@@ -19,6 +19,11 @@ class TagSeeder extends Seeder
         Tag::createMany(['room' => 'Enstaka rum', 'building' => 'Hela lokalen', 'external' => 'Extern bokning',], 'events.scope');
         Tag::createMany(['hidden' => 'Endast bokning', 'open' => 'Endast medlemmar', 'public' => 'Publik', 'advertized' => 'Marknadsfört'], 'events.visibility');
         Tag::createMany(['none' => 'Häng i lokalen', 'org' => 'Organisationsutveckling', 'hobby' => 'Hobby/Målning', 'board' => 'Brädspel', 'card' => 'Kortspel', 'figure' => 'figurspel'], 'events.activity_type');
-        Tag::createMany([], 'events.activity');
+        Tag::createMany(['any' => 'Generellt', 'board' => 'Styrelsemöte', 'ass' => 'Föreningsmöte', 'bsk' => 'BSK-möte', 'work' => 'Arbete i lokalen'], 'events.activity_org');
+
+        Tag::createMany(['any' => 'Generellt/Blandat'], 'events.activity_board');
+        Tag::createMany(['any' => 'Generellt/Blandat'], 'events.activity_card');
+        Tag::createMany(['any' => 'Generellt/Blandat'], 'events.activity_hobby');
+        Tag::createMany(['any' => 'Generellt/Blandat'], 'events.activity_figure');
     }
 }

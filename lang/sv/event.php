@@ -8,11 +8,11 @@ return [
     'value-id' => '',
     'options-id' => '',
 
-    'label-owner' => 'Ägare',
-    'placeholder-owner' => '',
-    'field-owner' => '',
-    'value-owner' => '',
-    'options-owner' => '',
+    'label-owned_by' => 'Ägare',
+    'placeholder-owned_by' => '',
+    'field-owned_by' => '',
+    'value-owned_by' => '',
+    'options-owned_by' => '',
 
     'label-starts_at' => 'Starttid',
     'placeholder-starts_at' => '',

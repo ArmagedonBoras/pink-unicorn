@@ -14,11 +14,39 @@ namespace App\Models{
 /**
  * App\Models\Article
  *
+ * @property int $id
+ * @property string $title
+ * @property string $body
+ * @property string $slug
+ * @property int $pinned
+ * @property string $gate
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property int|null $created_by
+ * @property int|null $updated_by
+ * @property int|null $deleted_by
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment> $comments
  * @property-read int|null $comments_count
+ * @method static \Database\Factories\ArticleFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Article newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Article newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Article query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereGate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article wherePinned($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article withoutTrashed()
  */
 	class Article extends \Eloquent {}
 }
@@ -27,16 +55,43 @@ namespace App\Models{
 /**
  * App\Models\Comment
  *
+ * @property int $id
+ * @property int|null $parent_id
+ * @property string|null $parent_type
+ * @property string $title
+ * @property string $body
+ * @property string $type
+ * @property bool $pinned
+ * @property \Illuminate\Support\Carbon $expire_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property int|null $created_by
+ * @property int|null $updated_by
+ * @property int|null $deleted_by
  * @property-read \App\Models\User|null $author
  * @property-read \App\Models\User|null $creator
  * @property-read \App\Models\User|null $destroyer
  * @property-read \App\Models\User|null $editor
- * @property-read mixed $body
  * @method static \Illuminate\Database\Eloquent\Builder|Comment filter(\App\Filters\CommentFilters $filters)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereExpireAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereParentType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment wherePinned($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment withoutTrashed()
  */
@@ -48,12 +103,13 @@ namespace App\Models{
  * App\Models\Event
  *
  * @property int $id
- * @property \App\Models\User|null $owner
+ * @property \App\Models\User|null $owned_by
  * @property \Illuminate\Support\Carbon $starts_at
  * @property \Illuminate\Support\Carbon $ends_at
  * @property int|null $created_by
  * @property int|null $updated_by
  * @property string|null $title
+ * @property string $slug
  * @property string|null $body
  * @property int|null $visibility
  * @property int|null $scope
@@ -61,6 +117,7 @@ namespace App\Models{
  * @property int|null $activity
  * @property int|null $activity_type
  * @property int $signup
+ * @property int $signup_seats
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment> $comments
@@ -83,9 +140,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereEndsAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Event whereOwner($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereOwnedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereScope($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereSignup($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereSignupSeats($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereStartsAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereUpdatedAt($value)
@@ -99,10 +158,22 @@ namespace App\Models{
 /**
  * App\Models\EventOrganizer
  *
+ * @property int $id
+ * @property int $event_id
+ * @property int $user_id
+ * @property int|null $role
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|EventOrganizer newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|EventOrganizer newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|EventOrganizer query()
+ * @method static \Illuminate\Database\Eloquent\Builder|EventOrganizer whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EventOrganizer whereEventId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EventOrganizer whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EventOrganizer whereRole($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EventOrganizer whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EventOrganizer whereUserId($value)
  */
 	class EventOrganizer extends \Eloquent {}
 }
@@ -111,9 +182,25 @@ namespace App\Models{
 /**
  * App\Models\EventSignup
  *
+ * @property int $id
+ * @property int $event_id
+ * @property int $user_id
+ * @property int|null $role
+ * @property int $checked_in
+ * @property int|null $payment_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|EventSignup newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|EventSignup newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|EventSignup query()
+ * @method static \Illuminate\Database\Eloquent\Builder|EventSignup whereCheckedIn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EventSignup whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EventSignup whereEventId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EventSignup whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EventSignup wherePaymentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EventSignup whereRole($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EventSignup whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EventSignup whereUserId($value)
  */
 	class EventSignup extends \Eloquent {}
 }
@@ -474,9 +561,23 @@ namespace App\Models\Gamification{
 /**
  * App\Models\Gamification\Achievement
  *
+ * @property int $id
+ * @property int $user_id
+ * @property int $point_id
+ * @property int $awarded_by
+ * @property int $points
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Achievement newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Achievement newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Achievement query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Achievement whereAwardedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Achievement whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Achievement whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Achievement wherePointId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Achievement wherePoints($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Achievement whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Achievement whereUserId($value)
  */
 	class Achievement extends \Eloquent {}
 }
@@ -485,9 +586,21 @@ namespace App\Models\Gamification{
 /**
  * App\Models\Gamification\Badge
  *
+ * @property int $id
+ * @property string $name
+ * @property int $point
+ * @property int $limited
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Badge newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Badge newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Badge query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Badge whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Badge whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Badge whereLimited($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Badge whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Badge wherePoint($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Badge whereUpdatedAt($value)
  */
 	class Badge extends \Eloquent {}
 }
@@ -496,9 +609,21 @@ namespace App\Models\Gamification{
 /**
  * App\Models\Gamification\Point
  *
+ * @property int $id
+ * @property string $name
+ * @property int $point
+ * @property int $limited
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Point newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Point newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Point query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Point whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Point whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Point whereLimited($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Point whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Point wherePoint($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Point whereUpdatedAt($value)
  */
 	class Point extends \Eloquent {}
 }
@@ -509,7 +634,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $number
- * @property int $holder
+ * @property int $hold_by
  * @property int $tag_id
  * @property int|null $created_by
  * @property int|null $updated_by
@@ -520,7 +645,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Key query()
  * @method static \Illuminate\Database\Eloquent\Builder|Key whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Key whereCreatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Key whereHolder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Key whereHoldBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Key whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Key whereNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Key whereTagId($value)
@@ -528,6 +653,27 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Key whereUpdatedBy($value)
  */
 	class Key extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Link
+ *
+ * @property int $id
+ * @property string $url
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Link newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Link newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Link query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Link whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Link whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Link whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Link whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Link whereUrl($value)
+ */
+	class Link extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -743,7 +889,7 @@ namespace App\Models{
  * App\Models\Room
  *
  * @property int $id
- * @property int $owner
+ * @property int $maintained_by
  * @property string $name
  * @property string $short
  * @property string $icon
@@ -767,8 +913,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Room whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Room whereIcon($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Room whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereMaintainedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Room whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Room whereOwner($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Room whereShort($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Room whereTextColor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Room whereUpdatedAt($value)
@@ -823,8 +969,14 @@ namespace App\Models{
  * @property string|null $profile_photo_path
  * @property string|null $login_at
  * @property string|null $last_login_at
+ * @property int $points
+ * @property int $all_time_points
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Gamification\Achievement> $achievements
+ * @property-read int|null $achievements_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Gamification\Achievement> $awarded_by
+ * @property-read int|null $awarded_by_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Event> $events
  * @property-read int|null $events_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
@@ -844,6 +996,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User permission($permissions)
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereAllTimePoints($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCurrentTeamId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
@@ -855,6 +1008,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePersonId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePoints($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereProfileId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
@@ -864,5 +1018,45 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
 	class User extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\WaitingList
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $waiting_list_object_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|WaitingList newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|WaitingList newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|WaitingList query()
+ * @method static \Illuminate\Database\Eloquent\Builder|WaitingList whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|WaitingList whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|WaitingList whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|WaitingList whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|WaitingList whereWaitingListObjectId($value)
+ */
+	class WaitingList extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\WaitingListObject
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|WaitingListObject newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|WaitingListObject newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|WaitingListObject query()
+ * @method static \Illuminate\Database\Eloquent\Builder|WaitingListObject whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|WaitingListObject whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|WaitingListObject whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|WaitingListObject whereUpdatedAt($value)
+ */
+	class WaitingListObject extends \Eloquent {}
 }
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use App\Models\WaitingListObject;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -10,12 +12,10 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('achievements', function (Blueprint $table) {
+        Schema::create('waiting_lists', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('point_id');
-            $table->foreignId('awarded_by');
-            $table->integer('points');
+            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(WaitingListObject::class);
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('achievements');
+        Schema::dropIfExists('waiting_lists');
     }
 };

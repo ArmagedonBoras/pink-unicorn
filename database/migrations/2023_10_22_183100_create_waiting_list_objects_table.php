@@ -10,12 +10,9 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('achievements', function (Blueprint $table) {
+        Schema::create('waiting_list_objects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('point_id');
-            $table->foreignId('awarded_by');
-            $table->integer('points');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -25,6 +22,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('achievements');
+        Schema::dropIfExists('waiting_list_objects');
     }
 };

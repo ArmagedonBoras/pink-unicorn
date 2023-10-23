@@ -6,9 +6,14 @@ namespace App\Models;
 use App\Models\Event;
 use App\Models\Profile;
 use App\Traits\Taggable;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Gamification\Point;
 use Laravel\Jetstream\HasProfilePhoto;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\Gamification\Achievement;
+use App\Traits\GamificationUser;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -26,6 +31,7 @@ class User extends Authenticatable
     use TwoFactorAuthenticatable;
     use HasRoles;
     use Taggable;
+    use GamificationUser;
 
     /**
      * The attributes that are mass assignable.
@@ -87,6 +93,10 @@ class User extends Authenticatable
         return $this->belongsTo(Profile::class, 'member_no', 'member_no');
     }
 
+    /**
+     * Oauth methods
+     */
+
     public function oauth_providers(): HasMany
     {
         return $this->hasMany(OauthProvider::class);
@@ -100,4 +110,6 @@ class User extends Authenticatable
         }
         return $available;
     }
+
+
 }
