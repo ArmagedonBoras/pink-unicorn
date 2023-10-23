@@ -13,7 +13,7 @@ return new class () extends Migration {
         Schema::create('keys', function (Blueprint $table) {
             $table->id();
             $table->string('number');
-            $table->foreignId('holder');
+            $table->foreignId('hold_by');
             $table->foreignId('tag_id');
             $table->foreignId('created_by')->nullable();
             $table->foreignId('updated_by')->nullable();

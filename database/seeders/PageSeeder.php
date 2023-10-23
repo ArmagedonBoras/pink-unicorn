@@ -17,7 +17,7 @@ class PageSeeder extends Seeder
      */
     public function run()
     {
-        // Menu::create(['name' => 'Info', 'link' => 'info', 'sort_order' => 10, 'gate' => 'user']);
+        Menu::create(['name' => 'Framsida', 'link' => 'front', 'sort_order' => 10, 'gate' => 'hidden']);
         Menu::create(['name' => 'User', 'link' => 'anvandare', 'sort_order' => 10, 'gate' => 'hidden']);
         // Menu::create(['name' => 'Bokning', 'link' => 'bookings', 'sort_order' => 30, 'gate' => 'user']);
         // Menu::create(['name' => 'Bli medlem', 'link' => 'bli-medlem', 'sort_order' => 40, 'gate' => 'guest', 'parent' =>"medlemskap" ]);
@@ -33,10 +33,8 @@ class PageSeeder extends Seeder
         $aboutMenu = Menu::create(['name' => 'Om oss', 'link' => 'om', 'sort_order' => 50, 'icon' => 'info-circle']);
         $aboutPage = Page::create([
             'title' => 'Om oss',
-            'body' => '<p>Karlstads bilkooperativ har funnits sedan 1999 och är ett av Sveriges första bilkooperativ. ' .
-                        'Vi är en ekonomisk förening som drivs utan vinstintresse och leds av en styrelse. Det praktiska arbetet med bilarna leds av en bilvårdsansvarig. ' .
-                        'Årsmöte hålls i slutet av mars och där ser vi gärna så många medlemmar som möjligt.</p><br>' .
-                        '<p>Du är välkommen att höra av dig med frågor på adressen <a href="mailto:medlemskap@karlstadsbilkooperativ.org">medlemskap@karlstadsbilkooperativ.org</a>.</p>',
+            'body' => '<p>Armagedon har funnits sedan 1982 och är ett av Sveriges första spelföreningar. ' .
+                        'Vi är en ideell förening som drivs utan vinstintresse och leds av en styrelse.</p>',
             'active' => 1,
             'title_size' => 400,
             'title_image' => 'storage/bg-images/dice.jpg',

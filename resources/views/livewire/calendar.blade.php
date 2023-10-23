@@ -29,8 +29,8 @@
                         <li class="list-group-item">
                             {{ $event->starts_at->format('H:i') }}
                             @foreach ($event->rooms as $room)
-                                <x-icon :color="$room->color" :title="$room->short">circle-fill
-                                    </x-bs-icon>
+                                <x-bs-icon :color="$room->color" :title="$room->short">circle-fill
+                                </x-bs-icon>
                             @endforeach
                         </li>
                     @endforeach

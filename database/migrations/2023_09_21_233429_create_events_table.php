@@ -12,12 +12,13 @@ return new class () extends Migration {
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("owner");
+            $table->foreignId("owned_by");
             $table->dateTime('starts_at');
             $table->dateTime('ends_at');
             $table->foreignId('created_by')->nullable();
             $table->foreignId('updated_by')->nullable();
             $table->string('title')->nullable();
+            $table->string('slug')->default('');
             $table->text('body')->nullable();
             $table->foreignId('visibility')->nullable();
             $table->foreignId('scope')->nullable();
@@ -25,6 +26,7 @@ return new class () extends Migration {
             $table->foreignId('activity')->nullable();
             $table->foreignId('activity_type')->nullable();
             $table->boolean('signup')->default(false);
+            $table->integer('signup_seats')->default(10000);
             $table->timestamps();
         });
     }

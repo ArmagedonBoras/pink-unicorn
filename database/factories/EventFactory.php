@@ -28,9 +28,11 @@ class EventFactory extends Factory
         $c->hour = 6;
         $c->addDay();
         return [
-                'owner' => User::inRandomOrder()->first()->id,
+                'owned_by' => User::inRandomOrder()->first()->id,
                 'starts_at' => $starts_at,
                 'ends_at' => $c,
+                'title' => $this->faker->sentence(),
+                'body' => $this->faker->paragraphs(3, true),
         ];
     }
 }

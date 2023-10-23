@@ -74,7 +74,7 @@
                         <ul class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="UserDropdown">
                             <li><a href="/anvandare/minsida"
                                     class="{{ request()->path() == 'anvandare/minsida' ? 'active ' : '' }}dropdown-item fs-6 fw-bolder text-uppercase">
-                                    <x-bs-icon name="person-badge" />&nbsp;Min sida
+                                    <x-bs-icon name="person-rolodex" />&nbsp;Min sida
                                 </a>
                             </li>
                             @foreach (menu('users') as $child)

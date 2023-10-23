@@ -14,7 +14,7 @@ class RoomSeeder extends Seeder
     public function run(): void
     {
         Room::create([
-                'owner' => 1,
+                'maintained_by' => 1,
                 'name' => 'Stora rummet',
                 'short' => 'Stora',
                 'color' => "#aaaaaa",
@@ -23,7 +23,7 @@ class RoomSeeder extends Seeder
                 'icon' => 'dice-1',
         ]);
         Room::create([
-                'owner' => 1,
+                'maintained_by' => 1,
                 'name' => 'Gröna rummet',
                 'short' => 'Gröna',
                 'color' => "#00ff00",
@@ -32,7 +32,7 @@ class RoomSeeder extends Seeder
                 'icon' => 'dice-2',
         ]);
         Room::create([
-                'owner' => 1,
+                'maintained_by' => 1,
                 'name' => 'Blå rummet',
                 'short' => 'Blå',
                 'color' => "#0000ff",
@@ -41,7 +41,7 @@ class RoomSeeder extends Seeder
                 'icon' => 'dice-3',
         ]);
         Room::create([
-                'owner' => 1,
+                'maintained_by' => 1,
                 'name' => 'Röda rummet',
                 'short' => 'Röda',
                 'color' => "#ff0000",
@@ -50,7 +50,7 @@ class RoomSeeder extends Seeder
                 'icon' => 'dice-4',
         ]);
         Room::create([
-                'owner' => 1,
+                'maintained_by' => 1,
                 'name' => 'Bruna rummet',
                 'short' => 'Bruna',
                 'color' => "#a52a2a",
@@ -59,7 +59,7 @@ class RoomSeeder extends Seeder
                 'icon' => 'dice-5',
         ]);
         Room::create([
-                'owner' => 1,
+                'maintained_by' => 1,
                 'name' => 'Målarhörnan',
                 'short' => 'Målarhörnan',
                 'color' => "#ffffff",
@@ -67,7 +67,7 @@ class RoomSeeder extends Seeder
                 'bookable' => false,
         ]);
         Room::create([
-                'owner' => 1,
+                'maintained_by' => 1,
                 'name' => 'Sprayrummet',
                 'short' => 'Spray',
                 'color' => "#ffffff",

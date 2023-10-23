@@ -12,7 +12,14 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = [];
+        $list = Article::latest()->get();
+        foreach ($list as $article) {
+            if ($article->isAuthorized()) {
+                $articles[] = $article;
+            }
+        }
+        return view('articles.index', ['articles' => $articles]);
     }
 
     /**
@@ -20,7 +27,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('update', Article::class);
     }
 
     /**
@@ -28,7 +35,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('update', Article::class);
     }
 
     /**
@@ -44,7 +51,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        $this->authorize('update', Article::class);
     }
 
     /**
@@ -52,7 +59,7 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $this->authorize('update', Article::class);
     }
 
     /**
@@ -60,6 +67,6 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $this->authorize('update', Article::class);
     }
 }

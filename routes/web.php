@@ -2,8 +2,8 @@
 
 use App\Livewire\Tv\Tv;
 use App\Livewire\Calendar;
-use App\Livewire\Members\Become;
 use App\Livewire\Tablet\Tablet;
+use App\Livewire\Members\Become;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
@@ -13,7 +13,9 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\OauthController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleMembersController;
@@ -31,14 +33,16 @@ use App\Http\Controllers\RoleMembersController;
 
 // Just to redirect that default paths from jetstream if forgotten some of the settings
 Route::get('/', function () {
-    return (Auth::check()) ? redirect(settings('landing_start', '/hem')) : redirect(settings('landing_login', '/hem'));
+    return (Auth::check()) ? redirect(settings('landing_start', '/front')) : redirect(settings('landing_login', '/front'));
 });
 Route::get('/home', function () {
-    return (Auth::check()) ? redirect(settings('landing_login', '/hem')) : redirect(settings('landing_login', '/hem'));
+    return (Auth::check()) ? redirect(settings('landing_login', '/front')) : redirect(settings('landing_login', '/front'));
 });
 Route::get('/dashboard', function () {
-    return (Auth::check()) ? redirect(settings('landing_login', '/hem')) : redirect(settings('landing_login', '/hem'));
+    return (Auth::check()) ? redirect(settings('landing_login', '/front')) : redirect(settings('landing_login', '/front'));
 });
+
+Route::get('/front', [FrontController::class, 'show'])->name('front');
 
 // oauth login
 Route::get('login/{provider}', [OauthController::class, 'redirectToProvider'])->name('provider.redirectToProvider');
@@ -56,6 +60,7 @@ Route::view('/kalender', 'events.calendar')->name('calendar');
 Route::post('/roller/{role}/medlemmar', [RoleMembersController::class, 'store'])->name('rolemembers.store');
 Route::delete('/roller/{role}/medlemmar/{user}', [RoleMembersController::class, 'destroy'])->name('rolemembers.destroy');
 Route::resource('evenemang', EventController::class)->names('events');
+Route::resource('artiklar', ArticleController::class)->names('articles');
 
 // Admin stuff
 Route::group(
