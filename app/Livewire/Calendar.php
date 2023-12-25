@@ -67,6 +67,7 @@ class Calendar extends Component
         }
         $this->events = Event::where('starts_at', '<', $this->ends_at)
             ->where('ends_at', '>', $this->starts_at)
+            ->where('is_recurring', false)
             ->whereHas('rooms', function ($q) use ($inFilter) {
                 $q->whereIn('room_id', $inFilter);
             })
@@ -75,6 +76,8 @@ class Calendar extends Component
         foreach ($this->events as $event) {
             $this->days[$event->starts_at->dayOfWeekIso][] = $event;
         }
+
+
     }
 
     public function render()
