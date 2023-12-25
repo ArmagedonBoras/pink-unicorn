@@ -104,6 +104,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property \App\Models\User|null $owned_by
+ * @property int|null $parent_id
  * @property \Illuminate\Support\Carbon $starts_at
  * @property \Illuminate\Support\Carbon $ends_at
  * @property int|null $created_by
@@ -116,8 +117,17 @@ namespace App\Models{
  * @property int|null $availability
  * @property int|null $activity
  * @property int|null $activity_type
- * @property int $signup
+ * @property int $has_signup
+ * @property int $is_recurring
  * @property int $signup_seats
+ * @property string|null $recurring_default_at
+ * @property string|null $recurring_year
+ * @property string|null $recurring_month
+ * @property string|null $recurring_day
+ * @property string|null $recurring_week
+ * @property string|null $recurring_week_of_month
+ * @property string|null $recurring_weekday
+ * @property string|null $recurring_end_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment> $comments
@@ -139,10 +149,20 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereEndsAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereHasSignup($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereIsRecurring($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereOwnedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereRecurringDay($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereRecurringDefaultAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereRecurringEndAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereRecurringMonth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereRecurringWeek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereRecurringWeekOfMonth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereRecurringWeekday($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereRecurringYear($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereScope($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Event whereSignup($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereSignupSeats($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Event whereStartsAt($value)
@@ -662,14 +682,18 @@ namespace App\Models{
  * @property int $id
  * @property string $url
  * @property string $name
+ * @property string $icon
+ * @property int $sort_order
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Link newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Link newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Link query()
  * @method static \Illuminate\Database\Eloquent\Builder|Link whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Link whereIcon($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Link whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Link whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Link whereSortOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Link whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Link whereUrl($value)
  */

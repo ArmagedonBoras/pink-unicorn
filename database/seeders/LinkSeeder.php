@@ -6,7 +6,7 @@ use App\Models\Link;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class LinksSeeder extends Seeder
+class LinkSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,6 +17,11 @@ class LinksSeeder extends Seeder
             'url' => 'https://discord.gg/DgbteVCtsh',
             'name' => 'Vår Discordserver',
             'icon' => 'discord',
+        ]);
+        Link::create([
+            'url' => 'https://www.facebook.com/groups/armagedonboras',
+            'name' => 'Vår Facebook',
+            'icon' => 'facebook',
         ]);
     }
 }

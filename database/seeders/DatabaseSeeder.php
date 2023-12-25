@@ -11,7 +11,7 @@ use Database\Seeders\PageSeeder;
 use Database\Seeders\RoomSeeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\EventSeeder;
-use Database\Seeders\LinksSeeder;
+use Database\Seeders\LinkSeeder;
 use Database\Seeders\TabletSeeder;
 use Spatie\Permission\Models\Role;
 use Database\Seeders\ArticleSeeder;
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             TabletSeeder::class,
             WaitingListSeeder::class,
             //ArticleSeeder::class,
-            LinksSeeder::class,
+            LinkSeeder::class,
         ]);
         app()->make(PermissionRegistrar::class)->forgetCachedPermissions();
     }
